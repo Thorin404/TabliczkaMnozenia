@@ -1,0 +1,55 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Play"
+        android:id="@+id/button1"
+        android:textSize="20sp"
+        android:layout_weight=".2"
+        android:onClick="sendPlay" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Diff"
+        android:id="@+id/button2"
+        android:textSize="20sp"
+        android:layout_weight=".2"
+        android:onClick="sendDiff" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Achiev"
+        android:id="@+id/button3"
+        android:textSize="20sp"
+        android:layout_weight=".2"
+        android:onClick="sendAchiev" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_About"
+        android:id="@+id/button4"
+        android:textSize="20sp"
+        android:layout_weight=".2"
+        android:onClick="sendAbout" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_Exit"
+        android:id="@+id/button5"
+        android:textSize="20sp"
+        android:layout_weight=".2"
+        android:onClick="sendExit" />
+
+</LinearLayout>
+

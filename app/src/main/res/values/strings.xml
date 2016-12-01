@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tabliczka Mnożenia</string>
+
+    <string name="button_Play">Graj</string>
+    <string name="button_Diff">Wybór poziomu</string>
+    <string name="button_Diff1">Bardzo łatwy</string>
+    <string name="button_Diff2">Łatwy</string>
+    <string name="button_Diff3">Średni</string>
+    <string name="button_Diff4">Trudny</string>
+    <string name="button_Diff5">Bardzo trudny</string>
+    <string name="button_Achiev">Osiągnięcia</string>
+    <string name="button_About">O grze</string>
+    <string name="button_Exit">Wyjście</string>
+    <string name="button_Menu">Menu</string>
+
+    <string name="cos">100</string>
+
+    <string name="text_autorzy">Autorzy aplikacji:\n
+        - Paweł Kopeć - poziomy trudności\n
+        - Bartosz Gołąbek - achievementy\n
+        - Michał Tartanus - desing aplikacji, animacje\n
+        - Karol Szkup - generator pytań i odpowiedzi</string>
+    <string name="text_achiev">Osiągnięcia tu będą, kiedyś...</string>
+    <string name="text_gra">Ekran gry</string>
+    <string name="text_postep">Zadanie "x" / 10</string>
+    <string name="text_odp">Tutaj wpisz\nodpowiedź</string>
+    <string name="text_pyt">Tutaj będzie\npytanie</string>
+    <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
+        Po puszczeniu przycisków X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
+</resources>
