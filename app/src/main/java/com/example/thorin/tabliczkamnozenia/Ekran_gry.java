@@ -5,20 +5,19 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 
 
 
 
 public class Ekran_gry extends Activity {
     ProgressBar progressBar;
-    Button buttonStartProgress1;
+    Button buttonStartProgress0,buttonStartProgress1;
     Button przy0,przy1,przy2,przy3,przy4,przy5,przy6,przy7,przy8,przy9;
     String string;
 
@@ -26,7 +25,8 @@ public class Ekran_gry extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran_gry);
-        buttonStartProgress1 = (Button) findViewById(R.id.button10);
+        buttonStartProgress0 = (Button) findViewById(R.id.button10);
+        buttonStartProgress1 = (Button) findViewById(R.id.button11);
         final TextView textview = (TextView)findViewById(R.id.odp);
         przy0= (Button) findViewById(R.id.button0);
         przy1= (Button) findViewById(R.id.button1);
@@ -41,12 +41,37 @@ public class Ekran_gry extends Activity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(100);
-        buttonStartProgress1.setOnClickListener(new Button.OnClickListener() {
+
+        buttonStartProgress0.setOnTouchListener(new Button.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new BackgroundAsyncTask().execute();
-                buttonStartProgress1.setClickable(false);}});
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                                sendon();
+                            }
+                            return true;
+                        }
+                    });
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            if(event.getAction() == MotionEvent.ACTION_UP) {
+                                setVisible(true);
+                                new BackgroundAsyncTask().execute();
+                                buttonStartProgress1.setClickable(false);
+                            }
+                            return true;
+                        }
+                    });
+                }
+                return true;
+            }
+        });
+
 
         setOnClickListener(przy0, textview);
         setOnClickListener(przy1, textview);
@@ -71,8 +96,6 @@ public class Ekran_gry extends Activity {
             }});
     }
 
-
-
     public class BackgroundAsyncTask extends
             AsyncTask<Void, Integer, Void> {
 
@@ -83,7 +106,9 @@ public class Ekran_gry extends Activity {
             // TODO Auto-generated method stub
             Toast.makeText(Ekran_gry.this,
                     "czas minął", Toast.LENGTH_LONG).show();
+            buttonStartProgress0.setClickable(true);
             buttonStartProgress1.setClickable(true);
+            sendoff();
         }
 
         @Override
@@ -100,7 +125,7 @@ public class Ekran_gry extends Activity {
             while (myProgress > 0) {
                 myProgress--;
                 publishProgress(myProgress);
-                SystemClock.sleep(100);
+                SystemClock.sleep(1);
             }
             return null;
         }
@@ -117,16 +142,23 @@ public class Ekran_gry extends Activity {
         finish();
     }
 
-    public void send1(View view) {
+    public void sendon() {
+        View view;
+        view = findViewById(R.id.inst);
+        view.setVisibility(View.INVISIBLE);
+        view = findViewById(R.id.pyt);
+        view.setVisibility(View.VISIBLE);
+        view = findViewById(R.id.odp);
+        view.setVisibility(View.VISIBLE);
     }
 
-    public void send2(View view) {
+    public void sendoff() {
+        View view;
+        view = findViewById(R.id.inst);
+        view.setVisibility(View.VISIBLE);
+        view = findViewById(R.id.pyt);
+        view.setVisibility(View.INVISIBLE);
+        view = findViewById(R.id.odp);
+        view.setVisibility(View.INVISIBLE);
     }
-
-    public void send3(View view) {
-    }
-
-    public void sendnic(View view) {
-    }
-
 }
