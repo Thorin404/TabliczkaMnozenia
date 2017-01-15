@@ -41,7 +41,7 @@ public class Ekran_gry extends Activity {
         przy9= (Button) findViewById(R.id.button9);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setProgress(100);
+        //progressBar.setProgress(100);
 
         //działanie x'ów
         buttonStartProgress0.setOnTouchListener(new Button.OnTouchListener() {
@@ -101,6 +101,7 @@ public class Ekran_gry extends Activity {
 
     }
 
+    //wpisywanie w odpowiedź
     private void setOnClickListener(final Button przy, final TextView textview){
         przy.setOnClickListener(new Button.OnClickListener() {
 
@@ -111,6 +112,7 @@ public class Ekran_gry extends Activity {
             }});
     }
 
+    //odliczanie czasu
     public class BackgroundAsyncTask extends
             AsyncTask<Void, Integer, Void> {
 
@@ -122,8 +124,6 @@ public class Ekran_gry extends Activity {
             // TODO Auto-generated method stub
             Toast.makeText(Ekran_gry.this,
                     "czas minął", Toast.LENGTH_LONG).show();
-            buttonStartProgress0.setClickable(true);
-            buttonStartProgress1.setClickable(true);
             sendoff();
             string = "";
             textview.setText(string);
@@ -156,10 +156,12 @@ public class Ekran_gry extends Activity {
 
     }
 
+    //wyjscie do menu
     public void sendMenu(View view) {
         finish();
     }
 
+    //wyłącza instrukcje włącza pytania
     public void sendon() {
         View view;
         view = findViewById(R.id.inst);
@@ -172,6 +174,7 @@ public class Ekran_gry extends Activity {
         buttonStartProgress1.setClickable(false);
     }
 
+    //włącza instrukcje wyłącza pytania
     public void sendoff() {
         View view;
         view = findViewById(R.id.inst);
@@ -180,5 +183,7 @@ public class Ekran_gry extends Activity {
         view.setVisibility(View.INVISIBLE);
         view = findViewById(R.id.odp);
         view.setVisibility(View.INVISIBLE);
+        buttonStartProgress0.setClickable(true);
+        buttonStartProgress1.setClickable(true);
     }
 }
