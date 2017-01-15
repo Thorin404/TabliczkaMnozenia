@@ -20,6 +20,7 @@ public class Ekran_gry extends Activity {
     Button buttonStartProgress0,buttonStartProgress1;
     Button przy0,przy1,przy2,przy3,przy4,przy5,przy6,przy7,przy8,przy9;
     String string;
+    int a=0,b=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,37 +43,51 @@ public class Ekran_gry extends Activity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(100);
 
+        //działanie x'ów
         buttonStartProgress0.setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                                sendon();
-                            }
-                            return true;
-                        }
-                    });
+                    a=1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            if(event.getAction() == MotionEvent.ACTION_UP) {
-                                setVisible(true);
-                                new BackgroundAsyncTask().execute();
-                                buttonStartProgress1.setClickable(false);
-                            }
-                            return true;
-                        }
-                    });
+                    a=0;
+                }
+                if (a==1 && b==1){
+                    sendon();
+                    a=2;
+                    b=2;
+                }
+                else if (a==2 &&b==2) {
+                    new BackgroundAsyncTask().execute();
+                    a=0;
+                    b=0;
+                }
+                return true;
+            }
+        });
+        buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    b=1;
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    b=0;
+                }
+                if (a==1 && b==1){
+                    sendon();
+                    a=2;
+                    b=2;
+                }
+                else if (a==2 &&b==2) {
+                    new BackgroundAsyncTask().execute();
+                    a=0;
+                    b=0;
                 }
                 return true;
             }
         });
 
-
+        //klikanie cyferek
         setOnClickListener(przy0, textview);
         setOnClickListener(przy1, textview);
         setOnClickListener(przy2, textview);
@@ -100,6 +115,7 @@ public class Ekran_gry extends Activity {
             AsyncTask<Void, Integer, Void> {
 
         int myProgress;
+        final TextView textview = (TextView)findViewById(R.id.odp);
 
         @Override
         protected void onPostExecute(Void result) {
@@ -109,6 +125,8 @@ public class Ekran_gry extends Activity {
             buttonStartProgress0.setClickable(true);
             buttonStartProgress1.setClickable(true);
             sendoff();
+            string = "";
+            textview.setText(string);
         }
 
         @Override
@@ -125,7 +143,7 @@ public class Ekran_gry extends Activity {
             while (myProgress > 0) {
                 myProgress--;
                 publishProgress(myProgress);
-                SystemClock.sleep(1);
+                SystemClock.sleep(10);
             }
             return null;
         }
@@ -150,6 +168,8 @@ public class Ekran_gry extends Activity {
         view.setVisibility(View.VISIBLE);
         view = findViewById(R.id.odp);
         view.setVisibility(View.VISIBLE);
+        buttonStartProgress0.setClickable(false);
+        buttonStartProgress1.setClickable(false);
     }
 
     public void sendoff() {
