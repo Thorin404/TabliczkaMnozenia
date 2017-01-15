@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#882222</color>
 
+    <color name="colorbad">#FF0000</color>
+    <color name="colorgood">#00FF00</color>
+
     <color name="colorButton">#448844</color>
 
     <color name="black_overlay">#660000</color>

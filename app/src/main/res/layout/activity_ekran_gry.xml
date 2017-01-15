@@ -16,7 +16,7 @@
             android:text="@string/text_postep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:id="@+id/textView2" />
         <Button
             android:text="@string/button_Menu"
@@ -35,11 +35,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/text_pyt"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:visibility="invisible"
             android:id="@+id/pyt" />
 
@@ -48,15 +47,34 @@
             android:layout_height="wrap_content"
             android:hint="@string/text_odp"
             android:layout_alignParentEnd="true"
-            android:textSize="20sp"
+            android:textSize="40sp"
             android:visibility="invisible"
             android:id="@+id/odp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/odp"
+            android:textSize="40sp"
+            android:hint="@string/text_good"
+            android:visibility="invisible"
+            android:id="@+id/good" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="60sp"
+            android:hint="@string/text_bad"
+            android:visibility="invisible"
+            android:id="@+id/bad" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:hint="@string/text_inst"
             android:visibility="visible"
             android:id="@+id/inst" />

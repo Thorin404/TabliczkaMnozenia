@@ -23,9 +23,10 @@
         - Karol Szkup - generator pytań i odpowiedzi</string>
     <string name="text_achiev">Osiągnięcia tu będą, kiedyś...</string>
     <string name="text_gra">Ekran gry</string>
-    <string name="text_postep">Zadanie "x" / 10</string>
-    <string name="text_odp">Tutaj wpisz\nodpowiedź</string>
-    <string name="text_pyt">Tutaj będzie\npytanie</string>
+    <string name="text_postep">Zadanie </string>
+    <string name="text_odp">Odpowiedź</string>
+    <string name="text_bad">ŹLE!</string>
+    <string name="text_good">Dobrze!</string>
     <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
         Po puszczeniu przycisków X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
 </resources>

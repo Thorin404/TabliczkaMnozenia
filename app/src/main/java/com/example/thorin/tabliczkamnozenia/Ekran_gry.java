@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
 
 
 
@@ -19,8 +20,9 @@ public class Ekran_gry extends Activity {
     ProgressBar progressBar;
     Button buttonStartProgress0,buttonStartProgress1;
     Button przy0,przy1,przy2,przy3,przy4,przy5,przy6,przy7,przy8,przy9;
-    String string;
-    int a=0,b=0;
+    String string,zmie;
+    int a=0,b=0,c,d,e,s;
+    Random rand = new Random();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,6 @@ public class Ekran_gry extends Activity {
         przy9= (Button) findViewById(R.id.button9);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        //progressBar.setProgress(100);
 
         //działanie x'ów
         buttonStartProgress0.setOnTouchListener(new Button.OnTouchListener() {
@@ -117,16 +118,15 @@ public class Ekran_gry extends Activity {
             AsyncTask<Void, Integer, Void> {
 
         int myProgress;
-        final TextView textview = (TextView)findViewById(R.id.odp);
+        final TextView tvopd = (TextView)findViewById(R.id.odp);
+        final TextView tvpyt = (TextView)findViewById(R.id.pyt);
 
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
             Toast.makeText(Ekran_gry.this,
-                    "czas minął", Toast.LENGTH_LONG).show();
-            sendoff();
-            string = "";
-            textview.setText(string);
+                    "koniec czasu", Toast.LENGTH_SHORT).show();
+            sprawdz();
         }
 
         @Override
@@ -135,6 +135,18 @@ public class Ekran_gry extends Activity {
             Toast.makeText(Ekran_gry.this,
                     "pośpiesz sie czas ucieka", Toast.LENGTH_SHORT).show();
             myProgress = 100;
+            //losowanie liczb c i d
+            //losuj(c);
+            c = rand.nextInt(10) + 1;
+            //losuj(d);
+            d = rand.nextInt(10) + 1;
+            s=c*d;
+            //wyświetlanie pytania
+            string = c+" * "+d;
+            tvpyt.setText(string);
+            //czyszczenie odpowiedzi
+            string = "";
+            tvopd.setText(string);
         }
 
         @Override
@@ -183,7 +195,75 @@ public class Ekran_gry extends Activity {
         view.setVisibility(View.INVISIBLE);
         view = findViewById(R.id.odp);
         view.setVisibility(View.INVISIBLE);
+        view = findViewById(R.id.good);
+        view.setVisibility(View.INVISIBLE);
+        view = findViewById(R.id.bad);
+        view.setVisibility(View.INVISIBLE);
         buttonStartProgress0.setClickable(true);
         buttonStartProgress1.setClickable(true);
     }
+
+    //sprawdz
+    public void sprawdz() {
+        final TextView tvopd = (TextView)findViewById(R.id.odp);
+        // zamiana stringa na int + sprawdzenie
+        zmie = tvopd.getText().toString();
+        int convert=Integer.valueOf(zmie);
+        //dobrze
+        if(convert==s) {
+            good();
+        }
+        //zle
+        else {
+            bad();
+        }
+    }
+
+    //dobrze
+    public void good() {
+        View view;
+        view = findViewById(R.id.good);
+        view.setVisibility(View.VISIBLE);
+        SystemClock.sleep(1000);
+        sendoff();
+    }
+    public void bad() {
+        View view;
+        view = findViewById(R.id.bad);
+        view.setVisibility(View.VISIBLE);
+        view = findViewById(R.id.pyt);
+        view.setVisibility(View.INVISIBLE);
+        view = findViewById(R.id.odp);
+        view.setVisibility(View.INVISIBLE);
+        SystemClock.sleep(1000);
+        sendoff();
+    }
+
+    // losowanie liczb
+    public int losuj(int a){
+        e = rand.nextInt(100) + 1;
+        {
+            if (e >= 0 && e <= 8) {
+                a = 1;
+            } else if (e >= 9 && e <= 19) {
+                a = 2;
+            } else if (e >= 20 && e <= 30) {
+                a = 3;
+            } else if (e >= 31 && e <= 41) {
+                a = 4;
+            } else if (e >= 42 && e <= 52) {
+                a = 5;
+            } else if (e >= 53 && e <= 64) {
+                a = 6;
+            } else if (e >= 65 && e <= 76) {
+                a = 7;
+            } else if (e >= 77 && e <= 88) {
+                a = 8;
+            } else {
+                a = 9;
+            }
+            return a;
+        }
+    }
+
 }
