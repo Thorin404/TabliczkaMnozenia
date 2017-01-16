@@ -21,7 +21,7 @@ public class Ekran_gry extends Activity {
     Button buttonStartProgress0,buttonStartProgress1;
     Button przy0,przy1,przy2,przy3,przy4,przy5,przy6,przy7,przy8,przy9;
     String string,zmie;
-    int a=0,b=0,c,d,e,s;
+    int a=0,b=0,c,d,s,licz=1,dbr;
     Random rand = new Random();
 
     @Override
@@ -120,13 +120,25 @@ public class Ekran_gry extends Activity {
         int myProgress;
         final TextView tvopd = (TextView)findViewById(R.id.odp);
         final TextView tvpyt = (TextView)findViewById(R.id.pyt);
+        final TextView tvzad = (TextView)findViewById(R.id.zadanie);
 
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
-            Toast.makeText(Ekran_gry.this,
-                    "koniec czasu", Toast.LENGTH_SHORT).show();
-            sprawdz();
+            // zamiana stringa na int + sprawdzenie
+            zmie = tvopd.getText().toString();
+            int convert=Integer.valueOf(zmie);
+            //dobrze
+            if(convert==s) {
+                good();
+                dbr++;
+            }
+            //zle
+            else {
+                bad();
+            }
+            if(licz==10) finish();
+            licz++;
         }
 
         @Override
@@ -136,17 +148,17 @@ public class Ekran_gry extends Activity {
                     "pośpiesz sie czas ucieka", Toast.LENGTH_SHORT).show();
             myProgress = 100;
             //losowanie liczb c i d
-            //losuj(c);
-            c = rand.nextInt(10) + 1;
-            //losuj(d);
-            d = rand.nextInt(10) + 1;
+            c=losuj();
+            d=losuj();
             s=c*d;
             //wyświetlanie pytania
-            string = c+" * "+d;
+            string = c+" * "+d+" =";
             tvpyt.setText(string);
             //czyszczenie odpowiedzi
             string = "";
             tvopd.setText(string);
+            string = "Zadanie "+licz+"/10";
+            tvzad.setText(string);
         }
 
         @Override
@@ -155,7 +167,7 @@ public class Ekran_gry extends Activity {
             while (myProgress > 0) {
                 myProgress--;
                 publishProgress(myProgress);
-                SystemClock.sleep(10);
+                SystemClock.sleep(1);
             }
             return null;
         }
@@ -165,7 +177,17 @@ public class Ekran_gry extends Activity {
             // TODO Auto-generated method stub
             progressBar.setProgress(values[0]);
         }
+    }
 
+    //wyłączanie i właczanie napisów
+    private void findAndMakeVisible(int id){
+        View view = findViewById(id);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    private void findAndMakeInvisible(int id){
+        View view = findViewById(id);
+        view.setVisibility(View.INVISIBLE);
     }
 
     //wyjscie do menu
@@ -175,95 +197,39 @@ public class Ekran_gry extends Activity {
 
     //wyłącza instrukcje włącza pytania
     public void sendon() {
-        View view;
-        view = findViewById(R.id.inst);
-        view.setVisibility(View.INVISIBLE);
-        view = findViewById(R.id.pyt);
-        view.setVisibility(View.VISIBLE);
-        view = findViewById(R.id.odp);
-        view.setVisibility(View.VISIBLE);
+        findAndMakeInvisible(R.id.inst);
+        findAndMakeInvisible(R.id.bad);
+        findAndMakeInvisible(R.id.good);
+        findAndMakeVisible(R.id.pyt);
+        findAndMakeVisible(R.id.odp);
         buttonStartProgress0.setClickable(false);
         buttonStartProgress1.setClickable(false);
     }
 
-    //włącza instrukcje wyłącza pytania
-    public void sendoff() {
-        View view;
-        view = findViewById(R.id.inst);
-        view.setVisibility(View.VISIBLE);
-        view = findViewById(R.id.pyt);
-        view.setVisibility(View.INVISIBLE);
-        view = findViewById(R.id.odp);
-        view.setVisibility(View.INVISIBLE);
-        view = findViewById(R.id.good);
-        view.setVisibility(View.INVISIBLE);
-        view = findViewById(R.id.bad);
-        view.setVisibility(View.INVISIBLE);
-        buttonStartProgress0.setClickable(true);
-        buttonStartProgress1.setClickable(true);
-    }
-
-    //sprawdz
-    public void sprawdz() {
-        final TextView tvopd = (TextView)findViewById(R.id.odp);
-        // zamiana stringa na int + sprawdzenie
-        zmie = tvopd.getText().toString();
-        int convert=Integer.valueOf(zmie);
-        //dobrze
-        if(convert==s) {
-            good();
-        }
-        //zle
-        else {
-            bad();
-        }
-    }
-
-    //dobrze
+    //dobra odpowiedz
     public void good() {
-        View view;
-        view = findViewById(R.id.good);
-        view.setVisibility(View.VISIBLE);
-        SystemClock.sleep(1000);
-        sendoff();
+        findAndMakeVisible(R.id.good);
     }
+    //zla odpowiedz
     public void bad() {
-        View view;
-        view = findViewById(R.id.bad);
-        view.setVisibility(View.VISIBLE);
-        view = findViewById(R.id.pyt);
-        view.setVisibility(View.INVISIBLE);
-        view = findViewById(R.id.odp);
-        view.setVisibility(View.INVISIBLE);
-        SystemClock.sleep(1000);
-        sendoff();
+        findAndMakeVisible(R.id.bad);
+        findAndMakeInvisible(R.id.pyt);
+        findAndMakeInvisible(R.id.odp);
     }
 
     // losowanie liczb
-    public int losuj(int a){
-        e = rand.nextInt(100) + 1;
-        {
-            if (e >= 0 && e <= 8) {
-                a = 1;
-            } else if (e >= 9 && e <= 19) {
-                a = 2;
-            } else if (e >= 20 && e <= 30) {
-                a = 3;
-            } else if (e >= 31 && e <= 41) {
-                a = 4;
-            } else if (e >= 42 && e <= 52) {
-                a = 5;
-            } else if (e >= 53 && e <= 64) {
-                a = 6;
-            } else if (e >= 65 && e <= 76) {
-                a = 7;
-            } else if (e >= 77 && e <= 88) {
-                a = 8;
-            } else {
-                a = 9;
-            }
-            return a;
-        }
+    public int losuj(){
+        int a,b = rand.nextInt(100) + 1;
+        if (b >= 0 && b <= 8) a = 1;
+        else if (b >= 9 && b <= 19) a = 2;
+        else if (b >= 20 && b <= 30)  a = 3;
+        else if (b >= 31 && b <= 41)  a = 4;
+        else if (b >= 42 && b <= 52)  a = 5;
+        else if (b >= 53 && b <= 64)  a = 6;
+        else if (b >= 65 && b <= 76)  a = 7;
+        else if (b >= 77 && b <= 88)  a = 8;
+        else a = 9;
+        return a;
     }
 
 }

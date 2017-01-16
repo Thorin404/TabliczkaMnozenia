@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:id="@+id/textView2" />
+            android:id="@+id/zadanie" />
         <Button
             android:text="@string/button_Menu"
             android:layout_width="wrap_content"
@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="60sp"
             android:visibility="invisible"
             android:id="@+id/pyt" />
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/text_odp"
             android:layout_alignParentEnd="true"
-            android:textSize="40sp"
+            android:textSize="60sp"
             android:visibility="invisible"
             android:id="@+id/odp" />
 
