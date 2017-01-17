@@ -21,7 +21,7 @@ public class Ekran_gry extends Activity {
     Button buttonStartProgress0,buttonStartProgress1;
     Button przy0,przy1,przy2,przy3,przy4,przy5,przy6,przy7,przy8,przy9;
     String string,zmie;
-    int a=0,b=0,c,d,s,licz=1,dbr;
+    int a=0,b=0,c,d,s,licz=1,dbr=0;
     Random rand = new Random();
 
     @Override
@@ -100,6 +100,7 @@ public class Ekran_gry extends Activity {
         setOnClickListener(przy8, textview);
         setOnClickListener(przy9, textview);
 
+        // ilosć pytan i czasu na odp zalezna od poziomu
     }
 
     //wpisywanie w odpowiedź
@@ -121,6 +122,8 @@ public class Ekran_gry extends Activity {
         final TextView tvopd = (TextView)findViewById(R.id.odp);
         final TextView tvpyt = (TextView)findViewById(R.id.pyt);
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
+        int liczbap=spr1();
+        int cznodp=spr2();
 
         @Override
         protected void onPostExecute(Void result) {
@@ -137,7 +140,7 @@ public class Ekran_gry extends Activity {
             else {
                 bad();
             }
-            if(licz==10) finish();
+            if(licz==liczbap) finish();
             licz++;
         }
 
@@ -157,7 +160,7 @@ public class Ekran_gry extends Activity {
             //czyszczenie odpowiedzi
             string = "";
             tvopd.setText(string);
-            string = "Zadanie "+licz+"/10";
+            string = "Zadanie "+licz+"/"+liczbap;
             tvzad.setText(string);
         }
 
@@ -167,7 +170,7 @@ public class Ekran_gry extends Activity {
             while (myProgress > 0) {
                 myProgress--;
                 publishProgress(myProgress);
-                SystemClock.sleep(1);
+                SystemClock.sleep(cznodp);
             }
             return null;
         }
@@ -231,5 +234,26 @@ public class Ekran_gry extends Activity {
         else a = 9;
         return a;
     }
-
+    // ustawianie liczby pytan w za;eznosci od poziomu
+    public int  spr1(){
+        Bundle przekazanedane = getIntent().getExtras();
+        int l,poz  = przekazanedane.getInt("POZ");
+        if(poz==1) l=10;
+        else if(poz==2) l=20;
+        else if(poz==3) l=30;
+        else if(poz==4) l=40;
+        else l=50;
+        return l;
+    }
+    // ustawienie czasu na odp w zaleznsci od poziomu
+    public int  spr2(){
+        Bundle przekazanedane = getIntent().getExtras();
+        int l,poz  = przekazanedane.getInt("POZ");
+        if(poz==1)l=30;
+        else if(poz==2) l=20;
+        else if(poz==3) l=15;
+        else if(poz==4) l=10;
+        else l=5;
+        return l;
+    }
 }
