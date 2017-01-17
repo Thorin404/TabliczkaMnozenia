@@ -1,0 +1,8 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="osiagi" type="PLAIN_TEXT" />
+      <mapping pattern="osiągi" type="XML" />
+    </extensionMap>
+  </component>
+</application>
