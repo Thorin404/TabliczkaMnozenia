@@ -104,13 +104,14 @@ public class Ekran_gry extends Activity {
     }
 
     //wpisywanie w odpowiedź
-    private void setOnClickListener(final Button przy, final TextView textview){
+    public void setOnClickListener(final Button przy, final TextView textview){
         przy.setOnClickListener(new Button.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 string = (String) przy.getText().toString();
                 textview.setText(textview.getText().toString() + string);
+                sprawdz();
             }});
     }
 
@@ -127,18 +128,7 @@ public class Ekran_gry extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
-            // zamiana stringa na int + sprawdzenie
-            zmie = tvopd.getText().toString();
-            int convert=Integer.valueOf(zmie);
-            //dobrze
-            if(convert==s) {
-                good();
-                dbr++;
-            }
-            //zle
-            else {
-                bad();
-            }
+            //onCancelled();
             if(licz==liczbap) finish();
             licz++;
         }
@@ -176,6 +166,14 @@ public class Ekran_gry extends Activity {
             // TODO Auto-generated method stub
             progressBar.setProgress(values[0]);
         }
+
+        @Override
+        protected void onCancelled(Void result){
+            myProgress=50;
+            if(licz==liczbap) finish();
+            licz++;
+            super.onCancelled();
+        }
     }
 
     //wyłączanie i właczanie napisów
@@ -187,6 +185,33 @@ public class Ekran_gry extends Activity {
     private void findAndMakeInvisible(int id){
         View view = findViewById(id);
         view.setVisibility(View.INVISIBLE);
+    }
+
+    //sprawdzanie wyniku
+    private void sprawdz(){
+        final TextView tvopd = (TextView)findViewById(R.id.odp);
+        // zamiana stringa na int + sprawdzenie
+        zmie = tvopd.getText().toString();
+        int convert=Integer.valueOf(zmie);
+        //dobrze
+        if(convert==s) {
+            good();
+            dbr++;
+            new BackgroundAsyncTask().cancel(true);
+        }
+        //zle
+        else if (convert>s) {
+            bad();
+            new BackgroundAsyncTask().cancel(true);
+        }
+        else if (s>9 && convert<s && convert>9) {
+            bad();
+            new BackgroundAsyncTask().cancel(true);
+        }
+        else if (s<10 && convert<s) {
+            bad();
+            new BackgroundAsyncTask().cancel(true);
+        }
     }
 
     //wyjscie do menu
