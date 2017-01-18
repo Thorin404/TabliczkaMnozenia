@@ -2,6 +2,8 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping pattern="osiagi" type="PLAIN_TEXT" />
+      <mapping pattern="neww" type="PLAIN_TEXT" />
+      <mapping pattern="newach" type="XML" />
       <mapping pattern="osiągi" type="XML" />
     </extensionMap>
   </component>
