@@ -122,8 +122,7 @@ public class Ekran_gry extends Activity {
         final TextView tvopd = (TextView)findViewById(R.id.odp);
         final TextView tvpyt = (TextView)findViewById(R.id.pyt);
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
-        int liczbap=spr1();
-        int cznodp=spr2();
+        int liczbap=spr1(),cznodp=spr2();
 
         @Override
         protected void onPostExecute(Void result) {
@@ -155,13 +154,10 @@ public class Ekran_gry extends Activity {
             d=losuj();
             s=c*d;
             //wyświetlanie pytania
-            string = c+" * "+d+" =";
-            tvpyt.setText(string);
+            tvpyt.setText(c+" * "+d+" =");
             //czyszczenie odpowiedzi
-            string = "";
-            tvopd.setText(string);
-            string = "Zadanie "+licz+"/"+liczbap;
-            tvzad.setText(string);
+            tvopd.setText("");
+            tvzad.setText("Zadanie "+licz+"/"+liczbap);
         }
 
         @Override
@@ -237,7 +233,7 @@ public class Ekran_gry extends Activity {
     // ustawianie liczby pytan w za;eznosci od poziomu
     public int  spr1(){
         Bundle przekazanedane = getIntent().getExtras();
-        int l,poz  = przekazanedane.getInt("POZ");
+        int l,poz = przekazanedane.getInt("POZ");
         if(poz==1) l=10;
         else if(poz==2) l=20;
         else if(poz==3) l=30;
@@ -248,12 +244,12 @@ public class Ekran_gry extends Activity {
     // ustawienie czasu na odp w zaleznsci od poziomu
     public int  spr2(){
         Bundle przekazanedane = getIntent().getExtras();
-        int l,poz  = przekazanedane.getInt("POZ");
-        if(poz==1)l=30;
-        else if(poz==2) l=20;
-        else if(poz==3) l=15;
-        else if(poz==4) l=10;
-        else l=5;
+        int l,poz = przekazanedane.getInt("POZ");
+        if(poz==1)l=300;
+        else if(poz==2) l=200;
+        else if(poz==3) l=150;
+        else if(poz==4) l=100;
+        else l=50;
         return l;
     }
 }
