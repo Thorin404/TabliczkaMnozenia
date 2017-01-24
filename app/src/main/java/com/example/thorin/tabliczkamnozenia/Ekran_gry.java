@@ -99,8 +99,6 @@ public class Ekran_gry extends Activity {
         setOnClickListener(przy7, textview);
         setOnClickListener(przy8, textview);
         setOnClickListener(przy9, textview);
-
-        // ilosć pytan i czasu na odp zalezna od poziomu
     }
 
     //wpisywanie w odpowiedź
@@ -127,15 +125,19 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onPostExecute(Void result) {
-            // TODO Auto-generated method stub
-            //onCancelled();
             if(licz==liczbap) finish();
             licz++;
+            zmie = tvopd.getText().toString();
+            int convert=Integer.valueOf(zmie);
+            if (convert!=s){
+                bad();
+                new BackgroundAsyncTask().cancel(true);
+            }
+            klawoff();
         }
 
         @Override
         protected void onPreExecute() {
-            // TODO Auto-generated method stub
             Toast.makeText(Ekran_gry.this,
                     "pośpiesz sie czas ucieka", Toast.LENGTH_SHORT).show();
             myProgress = 100;
@@ -148,11 +150,11 @@ public class Ekran_gry extends Activity {
             //czyszczenie odpowiedzi
             tvopd.setText("");
             tvzad.setText("Zadanie "+licz+"/"+liczbap);
+            klawon();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            // TODO Auto-generated method stub
             while (myProgress > 0) {
                 myProgress--;
                 publishProgress(myProgress);
@@ -163,7 +165,6 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            // TODO Auto-generated method stub
             progressBar.setProgress(values[0]);
         }
 
@@ -226,19 +227,54 @@ public class Ekran_gry extends Activity {
         findAndMakeInvisible(R.id.good);
         findAndMakeVisible(R.id.pyt);
         findAndMakeVisible(R.id.odp);
-        buttonStartProgress0.setClickable(false);
-        buttonStartProgress1.setClickable(false);
     }
 
     //dobra odpowiedz
     public void good() {
         findAndMakeVisible(R.id.good);
+        klawoff();
+        buttonStartProgress0.setEnabled(false);
+        buttonStartProgress1.setEnabled(false);
     }
     //zla odpowiedz
     public void bad() {
         findAndMakeVisible(R.id.bad);
         findAndMakeInvisible(R.id.pyt);
         findAndMakeInvisible(R.id.odp);
+        klawoff();
+        buttonStartProgress0.setEnabled(false);
+        buttonStartProgress1.setEnabled(false);
+    }
+
+    //wyłaczanie klawiatury
+    public void klawoff(){
+        buttonStartProgress0.setEnabled(true);
+        buttonStartProgress1.setEnabled(true);
+        przy0.setEnabled(false);
+        przy1.setEnabled(false);
+        przy2.setEnabled(false);
+        przy3.setEnabled(false);
+        przy4.setEnabled(false);
+        przy5.setEnabled(false);
+        przy6.setEnabled(false);
+        przy7.setEnabled(false);
+        przy8.setEnabled(false);
+        przy9.setEnabled(false);
+    }
+    //wlaczanie klawiatury
+    public void klawon(){
+        buttonStartProgress0.setEnabled(false);
+        buttonStartProgress1.setEnabled(false);
+        przy0.setEnabled(true);
+        przy1.setEnabled(true);
+        przy2.setEnabled(true);
+        przy3.setEnabled(true);
+        przy4.setEnabled(true);
+        przy5.setEnabled(true);
+        przy6.setEnabled(true);
+        przy7.setEnabled(true);
+        przy8.setEnabled(true);
+        przy9.setEnabled(true);
     }
 
     // losowanie liczb
