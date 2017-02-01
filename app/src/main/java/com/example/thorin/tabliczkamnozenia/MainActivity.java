@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
-import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -16,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** akcje po wciśnięciu przycisków */
     public void sendPlay(View view) {
-        Intent intent = new Intent(this, Ekran_gry.class);
+        Intent intent = new Intent(this, com.example.thorin.tabliczkamnozenia.Ekran_gry.Ekran_gry.class);
         startActivity(intent);
     }
     public void sendDiff(View view) {

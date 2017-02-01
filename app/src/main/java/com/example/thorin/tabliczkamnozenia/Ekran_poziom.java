@@ -37,7 +37,7 @@ public class Ekran_poziom extends AppCompatActivity {
     }
     //costamkolwiek
     private void przenies(int a){
-        Intent i = new Intent(Ekran_poziom.this, Ekran_gry.class);
+        Intent i = new Intent(Ekran_poziom.this, com.example.thorin.tabliczkamnozenia.Ekran_gry.Ekran_gry.class);
         i.putExtra("POZ",a);
         startActivity(i);
     }

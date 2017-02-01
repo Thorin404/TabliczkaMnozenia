@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ekran_gry" />
+        <activity android:name=".Ekran_gry$Ekran_gry" />
         <activity android:name=".Ekran_poziom" />
         <activity android:name=".Ekran_achiev" />
         <activity android:name=".Ekran_about" />
