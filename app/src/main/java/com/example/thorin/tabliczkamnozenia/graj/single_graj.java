@@ -9,7 +9,8 @@ public class single_graj {
 
     private int level = 0;
 
-    private Singleton() {
+    private void Singleton() {
+
     }
 
     public static single_graj get(){

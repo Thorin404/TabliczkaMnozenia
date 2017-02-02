@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** akcje po wciśnięciu przycisków */
     public void sendPlay(View view) {
-        Intent intent = new Intent(this, com.example.thorin.tabliczkamnozenia.Ekran_gry.Ekran_gry.class);
+        Intent intent = new Intent(this, Ekran_gry.class);
         startActivity(intent);
     }
     public void sendDiff(View view) {
