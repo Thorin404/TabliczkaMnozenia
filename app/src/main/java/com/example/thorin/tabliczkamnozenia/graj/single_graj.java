@@ -1,31 +1,15 @@
 package com.example.thorin.tabliczkamnozenia.graj;
 
 /**
- * Created by Thorin on 2017-02-01.
+ * Created by Thorin on 2017-02-03.
  */
 public class single_graj {
+    private static single_graj ourInstance = new single_graj();
 
-    private static single_graj instance = new single_graj();
-
-    private int level = 0;
-
-    private void Singleton() {
-
+    public static single_graj getInstance() {
+        return ourInstance;
     }
 
-    public static single_graj get(){
-        return instance;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    void setLevel(int level) {
-        this.level = level;
-    }
-
-    public static void main(String[] args) {
-
+    private single_graj() {
     }
 }

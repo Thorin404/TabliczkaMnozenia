@@ -33,7 +33,7 @@ public class Ekran_poziom extends AppCompatActivity {
     public void sendDiff5(View view) {
         przenies(5);
     }
-    //costamkolwiek
+    //o
     private void przenies(int a){
         Intent i = new Intent(Ekran_poziom.this, Ekran_gry.class);
         i.putExtra("POZ",a);
