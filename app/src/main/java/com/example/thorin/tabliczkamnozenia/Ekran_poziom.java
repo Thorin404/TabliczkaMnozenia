@@ -7,6 +7,8 @@ import android.view.View;
 
 
 public class Ekran_poziom extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "com.example.thorin.tabliczkamnozenia";
+    int poziom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class Ekran_poziom extends AppCompatActivity {
     public void sendDiff5(View view) {
         przenies(5);
     }
-    //o
+    //costamkolwiek
     private void przenies(int a){
         Intent i = new Intent(Ekran_poziom.this, Ekran_gry.class);
         i.putExtra("POZ",a);

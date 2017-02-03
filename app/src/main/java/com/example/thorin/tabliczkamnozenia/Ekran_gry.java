@@ -1,6 +1,5 @@
 package com.example.thorin.tabliczkamnozenia;
 
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,16 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
-
 public class Ekran_gry extends Activity {
     ProgressBar progressBar;
-    Button buttonStartProgress0, buttonStartProgress1;
-    Button przy0, przy1, przy2, przy3, przy4, przy5, przy6, przy7, przy8, przy9;
-    String string, zmie;
-    int a = 0, b = 0, c, d, s, licz = 1, dbr = 0;
+    Button buttonStartProgress0,buttonStartProgress1;
+    Button przy0, przy1, przy2, przy3, przy4;
+    Button przy5, przy6, przy7, przy8, przy9;
+    String string,zmie;
+    int a=0,b=0,c,d,s,licz=1,dbr=0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
 
@@ -29,7 +29,7 @@ public class Ekran_gry extends Activity {
         setContentView(R.layout.activity_ekran_gry);
         buttonStartProgress0 = (Button) findViewById(R.id.button10);
         buttonStartProgress1 = (Button) findViewById(R.id.button11);
-        final TextView textview = (TextView) findViewById(R.id.odp);
+        final TextView textview = (TextView)findViewById(R.id.odp);
         przy0 = (Button) findViewById(R.id.button0);
         przy1 = (Button) findViewById(R.id.button1);
         przy2 = (Button) findViewById(R.id.button2);
@@ -47,12 +47,12 @@ public class Ekran_gry extends Activity {
         buttonStartProgress0.setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     a = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     a = 0;
                 }
-                if (a == 1 && b == 1) {
+                if (a == 1 && b == 1){
                     sendon();
                     a = 0;
                     b = 0;
@@ -64,12 +64,12 @@ public class Ekran_gry extends Activity {
         buttonStartProgress1.setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     b = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     b = 0;
                 }
-                if (a == 1 && b == 1) {
+                if (a == 1 && b == 1){
                     sendon();
                     a = 0;
                     b = 0;
@@ -91,12 +91,12 @@ public class Ekran_gry extends Activity {
         setOnClickListener(przy8, textview);
         setOnClickListener(przy9, textview);
 
-        //wylaczenie klawiatury na poczatku
+        //wylaczenie klawiatury
         klawoff();
     }
 
     //wpisywanie w odpowiedź
-    public void setOnClickListener(final Button przy, final TextView textview) {
+    public void setOnClickListener(final Button przy, final TextView textview){
         przy.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -104,8 +104,7 @@ public class Ekran_gry extends Activity {
                 string = (String) przy.getText().toString();
                 textview.setText(textview.getText().toString() + string);
                 sprawdz();
-            }
-        });
+            }});
     }
 
     //odliczanie czasu
@@ -113,9 +112,9 @@ public class Ekran_gry extends Activity {
             AsyncTask<Void, Integer, Void> {
 
         int myProgress;
-        final TextView tvopd = (TextView) findViewById(R.id.odp);
-        final TextView tvpyt = (TextView) findViewById(R.id.pyt);
-        final TextView tvzad = (TextView) findViewById(R.id.zadanie);
+        final TextView tvopd = (TextView)findViewById(R.id.odp);
+        final TextView tvpyt = (TextView)findViewById(R.id.pyt);
+        final TextView tvzad = (TextView)findViewById(R.id.zadanie);
         int liczbap = spr1(), cznodp = spr2();
 
         @Override
@@ -164,7 +163,7 @@ public class Ekran_gry extends Activity {
         }
 
         @Override
-        protected void onCancelled(Void result) {
+        protected void onCancelled(Void result){
             if (licz == liczbap) finish();
             licz++;
             progressBar.setProgress(0);
@@ -174,12 +173,12 @@ public class Ekran_gry extends Activity {
     }
 
     //wyłączanie i właczanie napisów
-    private void findAndMakeVisible(int id) {
+    private void findAndMakeVisible(int id){
         View view = findViewById(id);
         view.setVisibility(View.VISIBLE);
     }
 
-    private void findAndMakeInvisible(int id) {
+    private void findAndMakeInvisible(int id){
         View view = findViewById(id);
         view.setVisibility(View.INVISIBLE);
     }
@@ -193,9 +192,18 @@ public class Ekran_gry extends Activity {
         //dobrze
         if (convert == s) good();
             //zle
-        else if (convert > s) bad();
-        else if (s > 9 && convert < s && convert > 9) bad();
-        else if (s < 10 && convert < s) bad();
+        else if (convert > s) {
+            bad();
+            task.cancel(true);
+        }
+        else if (s > 9 && convert < s && convert > 9) {
+            bad();
+            task.cancel(true);
+        }
+        else if (s < 10 && convert < s) {
+            bad();
+            task.cancel(true);
+        }
     }
 
     //wyjscie do menu
@@ -210,6 +218,8 @@ public class Ekran_gry extends Activity {
         findAndMakeInvisible(R.id.good);
         findAndMakeVisible(R.id.pyt);
         findAndMakeVisible(R.id.odp);
+        buttonStartProgress0.setClickable(false);
+        buttonStartProgress1.setClickable(false);
     }
 
     //dobra odpowiedz
@@ -221,7 +231,6 @@ public class Ekran_gry extends Activity {
         buttonStartProgress0.setEnabled(false);
         buttonStartProgress1.setEnabled(false);
     }
-
     //zla odpowiedz
     public void bad() {
         task.cancel(true);
@@ -266,41 +275,41 @@ public class Ekran_gry extends Activity {
     }
 
     // losowanie liczb
-    public int losuj() {
-        int a, b = rand.nextInt(100) + 1;
+    public int losuj(){
+        int a,b = rand.nextInt(100) + 1;
         if (b >= 0 && b <= 8) a = 1;
         else if (b >= 9 && b <= 19) a = 2;
-        else if (b >= 20 && b <= 30) a = 3;
-        else if (b >= 31 && b <= 41) a = 4;
-        else if (b >= 42 && b <= 52) a = 5;
-        else if (b >= 53 && b <= 64) a = 6;
-        else if (b >= 65 && b <= 76) a = 7;
-        else if (b >= 77 && b <= 88) a = 8;
+        else if (b >= 20 && b <= 30)  a = 3;
+        else if (b >= 31 && b <= 41)  a = 4;
+        else if (b >= 42 && b <= 52)  a = 5;
+        else if (b >= 53 && b <= 64)  a = 6;
+        else if (b >= 65 && b <= 76)  a = 7;
+        else if (b >= 77 && b <= 88)  a = 8;
         else a = 9;
         return a;
     }
 
     // ustawianie liczby pytan w za;eznosci od poziomu
-    public int spr1() {
+    public int  spr1(){
         Bundle przekazanedane = getIntent().getExtras();
-        int l, poz = przekazanedane.getInt("POZ");
-        if (poz == 1) l = 10;
-        else if (poz == 2) l = 20;
-        else if (poz == 3) l = 30;
-        else if (poz == 4) l = 40;
-        else l = 50;
+        int l,poz = przekazanedane.getInt("POZ");
+        if(poz==1) l=10;
+        else if(poz==2) l=20;
+        else if(poz==3) l=30;
+        else if(poz==4) l=40;
+        else l=50;
         return l;
     }
 
     // ustawienie czasu na odp w zaleznsci od poziomu
-    public int spr2() {
+    public int  spr2(){
         Bundle przekazanedane = getIntent().getExtras();
-        int l, poz = przekazanedane.getInt("POZ");
-        if (poz == 1) l = 300;
-        else if (poz == 2) l = 200;
-        else if (poz == 3) l = 150;
-        else if (poz == 4) l = 100;
-        else l = 50;
+        int l,poz = przekazanedane.getInt("POZ");
+        if(poz==1)l=300;
+        else if(poz==2) l=200;
+        else if(poz==3) l=150;
+        else if(poz==4) l=100;
+        else l=50;
         return l;
     }
 }
