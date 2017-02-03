@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -19,10 +18,11 @@ public class Ekran_gry extends Activity {
     Button przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
-    int a=0,b=0,c,d,s,licz=1,dbr=0;
+    int a = 0, b = 0, c, d, s, licz = 1, dbr = 0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
 
+    //przy tworzeniu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +115,9 @@ public class Ekran_gry extends Activity {
         final TextView tvopd = (TextView)findViewById(R.id.odp);
         final TextView tvpyt = (TextView)findViewById(R.id.pyt);
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
-        int liczbap = spr1(), cznodp = spr2();
+        //pobieranie liczby pytan i czasu na odpowiedz
+        int liczbap = single_poziom.getpytan();
+        int cznodp = single_poziom.getczas();
 
         @Override
         protected void onPostExecute(Void result) {
@@ -218,8 +220,6 @@ public class Ekran_gry extends Activity {
         findAndMakeInvisible(R.id.good);
         findAndMakeVisible(R.id.pyt);
         findAndMakeVisible(R.id.odp);
-        buttonStartProgress0.setClickable(false);
-        buttonStartProgress1.setClickable(false);
     }
 
     //dobra odpowiedz
@@ -228,8 +228,6 @@ public class Ekran_gry extends Activity {
         task.cancel(true);
         findAndMakeVisible(R.id.good);
         klawoff();
-        buttonStartProgress0.setEnabled(false);
-        buttonStartProgress1.setEnabled(false);
     }
     //zla odpowiedz
     public void bad() {
@@ -238,8 +236,6 @@ public class Ekran_gry extends Activity {
         findAndMakeInvisible(R.id.pyt);
         findAndMakeInvisible(R.id.odp);
         klawoff();
-        buttonStartProgress0.setEnabled(false);
-        buttonStartProgress1.setEnabled(false);
     }
 
     //wyłaczanie klawiatury
@@ -287,29 +283,5 @@ public class Ekran_gry extends Activity {
         else if (b >= 77 && b <= 88)  a = 8;
         else a = 9;
         return a;
-    }
-
-    // ustawianie liczby pytan w za;eznosci od poziomu
-    public int  spr1(){
-        Bundle przekazanedane = getIntent().getExtras();
-        int l,poz = przekazanedane.getInt("POZ");
-        if(poz==1) l=10;
-        else if(poz==2) l=20;
-        else if(poz==3) l=30;
-        else if(poz==4) l=40;
-        else l=50;
-        return l;
-    }
-
-    // ustawienie czasu na odp w zaleznsci od poziomu
-    public int  spr2(){
-        Bundle przekazanedane = getIntent().getExtras();
-        int l,poz = przekazanedane.getInt("POZ");
-        if(poz==1)l=300;
-        else if(poz==2) l=200;
-        else if(poz==3) l=150;
-        else if(poz==4) l=100;
-        else l=50;
-        return l;
     }
 }
