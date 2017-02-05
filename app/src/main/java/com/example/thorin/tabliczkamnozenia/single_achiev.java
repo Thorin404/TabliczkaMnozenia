@@ -10,6 +10,14 @@ public class single_achiev {
         return ourInstance;
     }
 
+    static void getachiev() {
+        //tsd
+    }
+
+    static void setachiev(int a) {
+        //tsd
+    }
+
     private single_achiev() {
     }
 }

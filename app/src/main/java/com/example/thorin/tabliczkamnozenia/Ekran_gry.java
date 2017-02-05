@@ -14,13 +14,16 @@ import java.util.Random;
 
 public class Ekran_gry extends Activity {
     ProgressBar progressBar;
-    Button buttonStartProgress0,buttonStartProgress1;
+    Button buttonStartProgress0, buttonStartProgress1;
     Button przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
     int a = 0, b = 0, c, d, s, licz = 1, dbr = 0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
+    //pobieranie liczby pytan i czasu na odpowiedz
+    int liczbap = single_poziom.getpytan();
+    int cznodp = single_poziom.getczas();
 
     //przy tworzeniu
     @Override
@@ -93,6 +96,15 @@ public class Ekran_gry extends Activity {
 
         //wylaczenie klawiatury
         klawoff();
+
+        final TextView tvzad = (TextView)findViewById(R.id.zadanie);
+        tvzad.setText("Zadanie 0/" + liczbap);
+    }
+
+    @Override
+    public void onDestroy(){
+        task.cancel(true);
+        super.onDestroy();
     }
 
     //wpisywanie w odpowiedź
@@ -115,13 +127,11 @@ public class Ekran_gry extends Activity {
         final TextView tvopd = (TextView)findViewById(R.id.odp);
         final TextView tvpyt = (TextView)findViewById(R.id.pyt);
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
-        //pobieranie liczby pytan i czasu na odpowiedz
-        int liczbap = single_poziom.getpytan();
-        int cznodp = single_poziom.getczas();
+
 
         @Override
         protected void onPostExecute(Void result) {
-            if (licz == liczbap) finish();
+            if (licz == liczbap) koniec();
             licz++;
             //sprawdzenie wyniku na koniec czasu
             zmie = tvopd.getText().toString();
@@ -166,7 +176,7 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onCancelled(Void result){
-            if (licz == liczbap) finish();
+            if (licz == liczbap) koniec();
             licz++;
             progressBar.setProgress(0);
             klawoff();
@@ -210,7 +220,7 @@ public class Ekran_gry extends Activity {
 
     //wyjscie do menu
     public void sendMenu(View view) {
-        finish();
+        koniec();
     }
 
     //wyłącza instrukcje włącza pytania
@@ -271,7 +281,7 @@ public class Ekran_gry extends Activity {
     }
 
     // losowanie liczb
-    public int losuj(){
+    private int losuj(){
         int a,b = rand.nextInt(100) + 1;
         if (b >= 0 && b <= 8) a = 1;
         else if (b >= 9 && b <= 19) a = 2;
@@ -283,5 +293,17 @@ public class Ekran_gry extends Activity {
         else if (b >= 77 && b <= 88)  a = 8;
         else a = 9;
         return a;
+    }
+
+    //wyswietla wynik i konczy
+    void koniec(){
+        final TextView tvwynik = (TextView)findViewById(R.id.wynik);
+        findAndMakeInvisible(R.id.inst);
+        findAndMakeInvisible(R.id.bad);
+        findAndMakeInvisible(R.id.good);
+        findAndMakeInvisible(R.id.pyt);
+        findAndMakeInvisible(R.id.odp);
+        findAndMakeVisible(R.id.wynik);
+        tvwynik.setText("Poprawnych\nodpowiedzi " + dbr + "/" + liczbap);
     }
 }

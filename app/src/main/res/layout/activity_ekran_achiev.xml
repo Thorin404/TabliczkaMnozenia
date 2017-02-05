@@ -7,12 +7,47 @@
     android:weightSum="1">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/text_achiev"
+        android:textSize="20sp"
+        android:id="@+id/achiev1"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_achiev"
+        android:id="@+id/achiev2"
         android:textSize="20sp"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_achiev"
+        android:id="@+id/achiev3"
+        android:textSize="20sp"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+
+    <CheckedTextView
+        android:text="@string/text_achiev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView1"
+        android:textSize="20sp"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:onClick="send1" />
 
 </LinearLayout>
 

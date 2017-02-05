@@ -9,5 +9,6 @@ public class Ekran_achiev extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran_achiev);
+
     }
 }
