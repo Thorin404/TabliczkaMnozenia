@@ -6,48 +6,93 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_achiev"
-        android:textSize="20sp"
-        android:id="@+id/achiev1"
-        android:paddingStart="5sp"
-        android:paddingTop="5sp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_achiev"
-        android:id="@+id/achiev2"
-        android:textSize="20sp"
-        android:paddingStart="5sp"
-        android:paddingTop="5sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_achiev"
-        android:id="@+id/achiev3"
-        android:textSize="20sp"
-        android:paddingStart="5sp"
-        android:paddingTop="5sp"/>
-
-
     <CheckedTextView
-        android:text="@string/text_achiev"
+        android:text="@string/text_achiev1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/checkedTextView1"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
-    <Button
-        android:text="Button"
+    <CheckedTextView
+        android:text="@string/text_achiev2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:onClick="send1" />
+        android:id="@+id/checkedTextView2"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView3"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView4"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView5"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView6"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView7"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
+        android:text="@string/text_achiev8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView8"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
 
 </LinearLayout>
 

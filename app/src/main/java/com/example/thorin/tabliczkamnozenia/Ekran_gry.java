@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -104,6 +105,10 @@ public class Ekran_gry extends Activity {
     @Override
     public void onDestroy(){
         task.cancel(true);
+        //przekazanie wyniku do achievmentow
+        double prc;
+        prc = dbr/liczbap*100;
+        single_achiev.setwin(prc);
         super.onDestroy();
     }
 
@@ -221,6 +226,7 @@ public class Ekran_gry extends Activity {
     //wyjscie do menu
     public void sendMenu(View view) {
         koniec();
+        finish();
     }
 
     //wyłącza instrukcje włącza pytania

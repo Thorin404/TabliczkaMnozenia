@@ -21,7 +21,6 @@
         - Bartosz Gołąbek - achievementy\n
         - Michał Tartanus - desing aplikacji, animacje\n
         - Karol Szkup - generator pytań i odpowiedzi</string>
-    <string name="text_achiev">Osiągnięcia tu będą, kiedyś...</string>
     <string name="text_gra">Ekran gry</string>
     <string name="text_postep">Zadanie </string>
     <string name="text_odp">Odp</string>
@@ -29,4 +28,13 @@
     <string name="text_good">Dobrze!</string>
     <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
         Po puszczeniu przycisków X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
+
+    <string name="text_achiev1">50% poprawnych odpowiedzi</string>
+    <string name="text_achiev2">75% poprawnych odpowiedzi</string>
+    <string name="text_achiev3">100% poprawnych odpowiedzi</string>
+    <string name="text_achiev4">100% poprawnych odpowiedzi przez 3 dni</string>
+    <string name="text_achiev5">100% poprawnych odpowiedzi przez 7 dni</string>
+    <string name="text_achiev6">100% poprawnych odpowiedzi przez 14 dni w dwóch grach</string>
+    <string name="text_achiev7">100% poprawnych odpowiedzi przez 30 dni w czterech grach</string>
+    <string name="text_achiev8">"A imię jego będzie czterdzieści i cztery"</string>
 </resources>
