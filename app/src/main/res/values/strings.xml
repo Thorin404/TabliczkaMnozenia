@@ -18,9 +18,9 @@
 
     <string name="text_autorzy">Autorzy aplikacji:\n
         - Paweł Kopeć - poziomy trudności\n
-        - Bartosz Gołąbek - achievementy\n
-        - Michał Tartanus - desing aplikacji, animacje\n
-        - Karol Szkup - generator pytań i odpowiedzi</string>
+        - Bartosz Gołąbek - generator pytań i odpowiedzi\n
+        - Michał Tartanus - manager projektu\n
+        - Karol Szkup - osiągnięcia</string>
     <string name="text_gra">Ekran gry</string>
     <string name="text_postep">Zadanie </string>
     <string name="text_odp">Odp</string>

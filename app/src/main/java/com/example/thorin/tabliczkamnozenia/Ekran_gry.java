@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,7 @@ public class Ekran_gry extends Activity {
     Button przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
-    int a = 0, b = 0, c, d, s, licz = 1, dbr = 0;
+    int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
     //pobieranie liczby pytan i czasu na odpowiedz
@@ -99,16 +98,15 @@ public class Ekran_gry extends Activity {
         klawoff();
 
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
-        tvzad.setText("Zadanie 0/" + liczbap);
+        tvzad.setText("Zadanie " + licz + "/" + liczbap);
     }
 
     @Override
     public void onDestroy(){
-        task.cancel(true);
+        if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
-        double prc;
-        prc = dbr/liczbap*100;
-        single_achiev.setwin(prc);
+        float cos = dbr/liczbap*100;
+        single_achiev.setwin(cos);
         super.onDestroy();
     }
 
@@ -118,7 +116,7 @@ public class Ekran_gry extends Activity {
 
             @Override
             public void onClick(View v) {
-                string = (String) przy.getText().toString();
+                string = przy.getText().toString();
                 textview.setText(textview.getText().toString() + string);
                 sprawdz();
             }});
@@ -136,22 +134,22 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onPostExecute(Void result) {
+            klawoff();
             if (licz == liczbap) koniec();
             licz++;
             //sprawdzenie wyniku na koniec czasu
             zmie = tvopd.getText().toString();
             if (zmie.equals("")) {
                 bad();
-            }
-            else {
+            } else {
                 int convert = Integer.valueOf(zmie);
                 if (convert != s) bad();
             }
-            klawoff();
         }
 
         @Override
         protected void onPreExecute() {
+            if (licz == 0) licz++;
             myProgress = 100;
             //losowanie liczb c i d
             c = losuj();
@@ -181,10 +179,10 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onCancelled(Void result){
+            klawoff();
             if (licz == liczbap) koniec();
             licz++;
             progressBar.setProgress(0);
-            klawoff();
             super.onCancelled();
         }
     }
@@ -225,7 +223,6 @@ public class Ekran_gry extends Activity {
 
     //wyjscie do menu
     public void sendMenu(View view) {
-        koniec();
         finish();
     }
 
@@ -245,6 +242,7 @@ public class Ekran_gry extends Activity {
         findAndMakeVisible(R.id.good);
         klawoff();
     }
+
     //zla odpowiedz
     public void bad() {
         task.cancel(true);
@@ -304,6 +302,8 @@ public class Ekran_gry extends Activity {
     //wyswietla wynik i konczy
     void koniec(){
         final TextView tvwynik = (TextView)findViewById(R.id.wynik);
+        buttonStartProgress0.setEnabled(false);
+        buttonStartProgress1.setEnabled(false);
         findAndMakeInvisible(R.id.inst);
         findAndMakeInvisible(R.id.bad);
         findAndMakeInvisible(R.id.good);

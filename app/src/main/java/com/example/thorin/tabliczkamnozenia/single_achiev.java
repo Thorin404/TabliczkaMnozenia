@@ -14,50 +14,42 @@ public class single_achiev {
 
     //achievement 50%
     static boolean achiev1() {
-        if (procent >= 50) return true;
-        else return false;
+        return procent >= 50;
     }
 
     //achievement 75%
     static boolean achiev2() {
-        if (procent >= 0.75) return true;
-        else return false;
+        return procent >= 0.75;
     }
 
     //achievement 100%
     static boolean achiev3() {
-        if (procent == 1) return true;
-        else return false;
+        return procent == 1;
     }
 
     //achievement 100% przez 3 dni
     static boolean achiev4() {
-        if (procent == 1) return true;
-        else return false;
+        return procent == 1;
     }
 
     //achievement 100% przez 7 dni
     static boolean achiev5() {
-        if (procent == 1) return true;
-        else return false;
+        return procent == 1;
     }
 
     //achievement 100% przez 14 dni w dwoch grach dziennie
     static boolean achiev6() {
-        if (procent == 1) return true;
-        else return false;
+        return procent == 1;
     }
 
     //achievement 100% przez 30 dni w czterech grach dziennie
     static boolean achiev7() {
-        if (procent == 1) return true;
-        else return false;
+        return procent == 1;
     }
 
     //achievement 44%
     static boolean achiev8() {
-        if (procent == 0.44) return true;
-        else return false;
+        return procent == 0.44;
     }
 
     //pobiera % wygranych
