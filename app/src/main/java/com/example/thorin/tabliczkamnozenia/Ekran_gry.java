@@ -18,7 +18,8 @@ public class Ekran_gry extends Activity {
     Button przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
-    int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
+    int a = 0, b = 0, c, d, s, licz = 0;
+    double dbr = 0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
     //pobieranie liczby pytan i czasu na odpowiedz
@@ -105,8 +106,8 @@ public class Ekran_gry extends Activity {
     public void onDestroy(){
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
-        float cos = dbr/liczbap*100;
-        single_achiev.setwin(cos);
+        double cos = Double.valueOf(liczbap);
+        single_achiev.setwin(dbr/cos);
         super.onDestroy();
     }
 

@@ -14,7 +14,7 @@ public class single_achiev {
 
     //achievement 50%
     static boolean achiev1() {
-        return procent >= 50;
+        return procent >= 0.5;
     }
 
     //achievement 75%
