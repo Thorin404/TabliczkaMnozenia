@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tabliczka Mnożenia</string>
+    <string name="app_name">Tabliczka Mnozenia</string>
 
     <string name="button_Play">Graj</string>
-    <string name="button_Diff">Wybór poziomu</string>
-    <string name="button_Achiev">Osiągnięcia</string>
+    <string name="button_Diff">Wybor poziomu</string>
+    <string name="button_Achiev">Osiagniecia</string>
     <string name="button_About">O grze</string>
-    <string name="button_Exit">Wyjście</string>
+    <string name="button_Exit">Wyjscie</string>
     <string name="button_Menu">Menu</string>
-    <string name="button_Usun">Usuń osiągnięcia</string>
+    <string name="button_Usun">Usun osiagniecia</string>
 
     <string name="cos">100</string>
 
-    <string name="button_Diff1">Bardzo łatwy\n
-        Liczba pytań: 10\n
-        Czas na odpowiedź: 30s</string>
-    <string name="button_Diff2">Łatwy\n
-        Liczba pytań: 20\n
-        Czas na odpowiedź: 20s</string>
-    <string name="button_Diff3">Średni\n
-        Liczba pytań: 30\n
-        Czas na odpowiedź: 15s</string>
+    <string name="button_Diff1">Bardzo latwy\n
+        Liczba pytan: 10\n
+        Czas na odpowiedz: 30s</string>
+    <string name="button_Diff2">Latwy\n
+        Liczba pytan: 20\n
+        Czas na odpowiedz: 20s</string>
+    <string name="button_Diff3">Sredni\n
+        Liczba pytan: 30\n
+        Czas na odpowiedz: 15s</string>
     <string name="button_Diff4">Trudny\n
-        Liczba pytań: 40\n
-        Czas na odpowiedź: 10s</string>
+        Liczba pytan: 40\n
+        Czas na odpowiedz: 10s</string>
     <string name="button_Diff5">Bardzo trudny\n
-        Liczba pytań: 50\n
-        Czas na odpowiedź: 5s</string>
+        Liczba pytan: 50\n
+        Czas na odpowiedz: 5s</string>
 
     <string name="text_autorzy">Autorzy aplikacji:\n
-        - Paweł Kopeć - poziomy trudności\n
-        - Bartosz Gołąbek - generator pytań i odpowiedzi\n
-        - Michał Tartanus - manager projektu\n
-        - Karol Szkup - osiągnięcia</string>
+        - Pawel Kopec - poziomy trudnosci\n
+        - Bartosz Golabek - generator pytan i odpowiedzi\n
+        - Michal Tartanus - manager projektu\n
+        - Karol Szkup - osiagniecia</string>
     <string name="text_gra">Ekran gry</string>
     <string name="text_postep">Zadanie </string>
     <string name="text_odp">Odp</string>
-    <string name="text_bad">ŹLE!</string>
+    <string name="text_bad">ZLE!</string>
     <string name="text_good">Dobrze!</string>
     <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
-        Po puszczeniu przycisków X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
+        Po puszczeniu przyciskow X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
 
-    <string name="text_achiev0">50% poprawnych odpowiedzi</string>
-    <string name="text_achiev1">75% poprawnych odpowiedzi</string>
-    <string name="text_achiev2">100% poprawnych odpowiedzi</string>
-    <string name="text_achiev3">100% poprawnych odpowiedzi przez 3 dni</string>
-    <string name="text_achiev4">100% poprawnych odpowiedzi przez 7 dni</string>
-    <string name="text_achiev5">100% poprawnych odpowiedzi przez 14 dni w dwóch grach</string>
-    <string name="text_achiev6">100% poprawnych odpowiedzi przez 30 dni w czterech grach</string>
-    <string name="text_achiev7">"A imię jego będzie czterdzieści i cztery"</string>
+    <string name="text_achiev0">50% dobrych odpowiedzi</string>
+    <string name="text_achiev1">75% dobrych odpowiedzi</string>
+    <string name="text_achiev2">100% dobrych odpowiedzi</string>
+    <string name="text_achiev3">100% dobrych odpowiedzi przez 3 dni</string>
+    <string name="text_achiev4">100% dobrych odpowiedzi przez 7 dni</string>
+    <string name="text_achiev5">100% dobrych odpowiedzi przez 14 dni w dwoch grach</string>
+    <string name="text_achiev6">100% dobrych odpowiedzi przez 30 dni w czterech grach</string>
+    <string name="text_achiev7">"A imie jego bedzie czterdziesci i cztery"</string>
 </resources>

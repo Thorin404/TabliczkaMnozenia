@@ -8,17 +8,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ekran_gry" />
-        <activity android:name=".Ekran_poziom" />
-        <activity android:name=".Ekran_achiev" />
-        <activity android:name=".Ekran_about" />
+        <activity android:name=".Ekran_gry"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ekran_poziom"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ekran_achiev"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ekran_about"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

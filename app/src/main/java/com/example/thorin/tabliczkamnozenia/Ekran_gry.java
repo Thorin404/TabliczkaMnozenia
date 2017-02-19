@@ -1,6 +1,7 @@
 package com.example.thorin.tabliczkamnozenia;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -15,11 +16,10 @@ import java.util.Random;
 public class Ekran_gry extends Activity {
     ProgressBar progressBar;
     Button buttonStartProgress0, buttonStartProgress1;
-    Button przy0, przy1, przy2, przy3, przy4;
+    Button przy, przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
-    int a = 0, b = 0, c, d, s, licz = 0;
-    double dbr = 0;
+    int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
     //pobieranie liczby pytan i czasu na odpowiedz
@@ -100,6 +100,34 @@ public class Ekran_gry extends Activity {
 
         final TextView tvzad = (TextView)findViewById(R.id.zadanie);
         tvzad.setText("Zadanie " + licz + "/" + liczbap);
+
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
+        przy0.setTypeface(typeFace);
+        przy1.setTypeface(typeFace);
+        przy2.setTypeface(typeFace);
+        przy3.setTypeface(typeFace);
+        przy4.setTypeface(typeFace);
+        przy5.setTypeface(typeFace);
+        przy6.setTypeface(typeFace);
+        przy7.setTypeface(typeFace);
+        przy8.setTypeface(typeFace);
+        przy9.setTypeface(typeFace);
+        buttonStartProgress0.setTypeface(typeFace);
+        buttonStartProgress1.setTypeface(typeFace);
+        final TextView tvpyt = (TextView)findViewById(R.id.pyt);
+        final TextView tvbad = (TextView)findViewById(R.id.bad);
+        final TextView tvgood = (TextView)findViewById(R.id.good);
+        final TextView tvinst = (TextView)findViewById(R.id.inst);
+        final TextView tvwynik = (TextView)findViewById(R.id.wynik);
+        przy = (Button) findViewById(R.id.button);
+        tvzad.setTypeface(typeFace);
+        tvpyt.setTypeface(typeFace);
+        tvgood.setTypeface(typeFace);
+        tvbad.setTypeface(typeFace);
+        tvinst.setTypeface(typeFace);
+        tvwynik.setTypeface(typeFace);
+        przy.setTypeface(typeFace);
+        textview.setTypeface(typeFace);
     }
 
     @Override
@@ -107,7 +135,8 @@ public class Ekran_gry extends Activity {
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
         double cos = Double.valueOf(liczbap);
-        single_achiev.setwin(dbr/cos);
+        double soc = Double.valueOf(dbr);
+        single_achiev.setwin(soc/cos);
         super.onDestroy();
     }
 

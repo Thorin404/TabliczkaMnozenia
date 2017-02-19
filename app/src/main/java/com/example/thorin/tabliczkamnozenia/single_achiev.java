@@ -4,13 +4,8 @@ package com.example.thorin.tabliczkamnozenia;
  * Created by Thorin on 2017-02-03.
  */
 public class single_achiev {
-    private static single_achiev ourInstance = new single_achiev();
 
-    public static single_achiev getInstance() {
-        return ourInstance;
-    }
-
-    private static double procent;
+    private static double procent = 0;
     private static int done[] = {0,0,0,0,0,0,0,0};
 
     //achievement 50%
@@ -69,6 +64,7 @@ public class single_achiev {
     //usuwanie osiagnięć
     static void clear() {
         for (int i = 0; i < 8; i++) done[i] = 0;
+        procent = 0;
     }
 
     private single_achiev() {

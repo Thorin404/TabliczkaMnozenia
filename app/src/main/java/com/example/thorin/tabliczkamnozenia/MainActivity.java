@@ -1,15 +1,28 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        zmienfont(R.id.button0);
+        zmienfont(R.id.button1);
+        zmienfont(R.id.button2);
+        zmienfont(R.id.button3);
+        zmienfont(R.id.button4);
+    }
+
+    private void zmienfont(int id){
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
+        TextView button=(TextView)findViewById(id);
+        button.setTypeface(typeFace);
     }
 
     /** akcje po wciśnięciu przycisków */
