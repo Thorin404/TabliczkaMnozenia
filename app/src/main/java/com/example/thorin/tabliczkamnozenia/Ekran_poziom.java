@@ -1,6 +1,8 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,10 @@ public class Ekran_poziom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_poziom.this);
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        int poziom = myPreferences.getInt("poziom", 0);
+        myEditor.commit();
         setContentView(R.layout.activity_ekran_poziom);
         przy0 = (Button) findViewById(R.id.button0);
         przy1 = (Button) findViewById(R.id.button1);
@@ -24,11 +30,11 @@ public class Ekran_poziom extends AppCompatActivity {
         przy2.setEnabled(true);
         przy3.setEnabled(true);
         przy4.setEnabled(true);
-        if (single_poziom.getpoziom() == 0) przy0.setEnabled(false);
-        else if (single_poziom.getpoziom() == 1) przy1.setEnabled(false);
-        else if (single_poziom.getpoziom() == 2) przy2.setEnabled(false);
-        else if (single_poziom.getpoziom() == 3) przy3.setEnabled(false);
-        else if (single_poziom.getpoziom() == 4) przy4.setEnabled(false);
+        if (poziom == 0) przy0.setEnabled(false);
+        else if (poziom == 1) przy1.setEnabled(false);
+        else if (poziom == 2) przy2.setEnabled(false);
+        else if (poziom == 3) przy3.setEnabled(false);
+        else if (poziom == 4) przy4.setEnabled(false);
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
         przy0.setTypeface(typeFace);
         przy1.setTypeface(typeFace);
@@ -60,6 +66,10 @@ public class Ekran_poziom extends AppCompatActivity {
     //costamkolwiek
     private void przenies(int a){
         single_poziom.setpoziom(a);
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_poziom.this);
+        SharedPreferences.Editor myEditor = myPreferences.edit();
+        myEditor.putInt("poziom",single_poziom.getpoziom());
+        myEditor.commit();
         finish();
     }
 }
