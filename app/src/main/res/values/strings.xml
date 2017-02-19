@@ -4,17 +4,29 @@
 
     <string name="button_Play">Graj</string>
     <string name="button_Diff">Wybór poziomu</string>
-    <string name="button_Diff1">Bardzo łatwy</string>
-    <string name="button_Diff2">Łatwy</string>
-    <string name="button_Diff3">Średni</string>
-    <string name="button_Diff4">Trudny</string>
-    <string name="button_Diff5">Bardzo trudny</string>
     <string name="button_Achiev">Osiągnięcia</string>
     <string name="button_About">O grze</string>
     <string name="button_Exit">Wyjście</string>
     <string name="button_Menu">Menu</string>
+    <string name="button_Usun">Usuń osiągnięcia</string>
 
     <string name="cos">100</string>
+
+    <string name="button_Diff1">Bardzo łatwy\n
+        Liczba pytań: 10\n
+        Czas na odpowiedź: 30s</string>
+    <string name="button_Diff2">Łatwy\n
+        Liczba pytań: 20\n
+        Czas na odpowiedź: 20s</string>
+    <string name="button_Diff3">Średni\n
+        Liczba pytań: 30\n
+        Czas na odpowiedź: 15s</string>
+    <string name="button_Diff4">Trudny\n
+        Liczba pytań: 40\n
+        Czas na odpowiedź: 10s</string>
+    <string name="button_Diff5">Bardzo trudny\n
+        Liczba pytań: 50\n
+        Czas na odpowiedź: 5s</string>
 
     <string name="text_autorzy">Autorzy aplikacji:\n
         - Paweł Kopeć - poziomy trudności\n
@@ -29,12 +41,12 @@
     <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
         Po puszczeniu przycisków X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
 
-    <string name="text_achiev1">50% poprawnych odpowiedzi</string>
-    <string name="text_achiev2">75% poprawnych odpowiedzi</string>
-    <string name="text_achiev3">100% poprawnych odpowiedzi</string>
-    <string name="text_achiev4">100% poprawnych odpowiedzi przez 3 dni</string>
-    <string name="text_achiev5">100% poprawnych odpowiedzi przez 7 dni</string>
-    <string name="text_achiev6">100% poprawnych odpowiedzi przez 14 dni w dwóch grach</string>
-    <string name="text_achiev7">100% poprawnych odpowiedzi przez 30 dni w czterech grach</string>
-    <string name="text_achiev8">"A imię jego będzie czterdzieści i cztery"</string>
+    <string name="text_achiev0">50% poprawnych odpowiedzi</string>
+    <string name="text_achiev1">75% poprawnych odpowiedzi</string>
+    <string name="text_achiev2">100% poprawnych odpowiedzi</string>
+    <string name="text_achiev3">100% poprawnych odpowiedzi przez 3 dni</string>
+    <string name="text_achiev4">100% poprawnych odpowiedzi przez 7 dni</string>
+    <string name="text_achiev5">100% poprawnych odpowiedzi przez 14 dni w dwóch grach</string>
+    <string name="text_achiev6">100% poprawnych odpowiedzi przez 30 dni w czterech grach</string>
+    <string name="text_achiev7">"A imię jego będzie czterdzieści i cztery"</string>
 </resources>

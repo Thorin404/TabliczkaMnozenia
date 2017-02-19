@@ -7,13 +7,22 @@
     android:weightSum="1">
 
     <CheckedTextView
+        android:text="@string/text_achiev0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView0"
+        android:textSize="25sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:paddingStart="5sp"
+        android:paddingTop="5sp"/>
+
+    <CheckedTextView
         android:text="@string/text_achiev1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/checkedTextView1"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -24,7 +33,6 @@
         android:id="@+id/checkedTextView2"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -35,7 +43,6 @@
         android:id="@+id/checkedTextView3"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -46,7 +53,6 @@
         android:id="@+id/checkedTextView4"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -57,7 +63,6 @@
         android:id="@+id/checkedTextView5"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -68,7 +73,6 @@
         android:id="@+id/checkedTextView6"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
@@ -79,20 +83,15 @@
         android:id="@+id/checkedTextView7"
         android:textSize="25sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
         android:paddingStart="5sp"
         android:paddingTop="5sp"/>
 
-    <CheckedTextView
-        android:text="@string/text_achiev8"
+    <Button
+        android:text="@string/button_Usun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/checkedTextView8"
-        android:textSize="25sp"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="false"
-        android:paddingStart="5sp"
-        android:paddingTop="5sp"/>
+        android:id="@+id/button"
+        android:onClick="sendUsun" />
 
 </LinearLayout>
 
