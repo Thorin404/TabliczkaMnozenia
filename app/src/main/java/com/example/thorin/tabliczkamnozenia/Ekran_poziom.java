@@ -16,9 +16,7 @@ public class Ekran_poziom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_poziom.this);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
         int poziom = myPreferences.getInt("poziom", 0);
-        myEditor.commit();
         setContentView(R.layout.activity_ekran_poziom);
         przy0 = (Button) findViewById(R.id.button0);
         przy1 = (Button) findViewById(R.id.button1);
