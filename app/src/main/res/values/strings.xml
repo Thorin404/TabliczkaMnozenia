@@ -10,8 +10,6 @@
     <string name="button_Menu">Menu</string>
     <string name="button_Usun">Usun osiagniecia</string>
 
-    <string name="cos">100</string>
-
     <string name="button_Diff1">Bardzo latwy\n
         Liczba pytan: 10\n
         Czas na odpowiedz: 30s</string>
@@ -29,17 +27,17 @@
         Czas na odpowiedz: 5s</string>
 
     <string name="text_autorzy">Autorzy aplikacji:\n
-        - Pawel Kopec - poziomy trudnosci\n
-        - Bartosz Golabek - generator pytan i odpowiedzi\n
-        - Michal Tartanus - manager projektu\n
-        - Karol Szkup - osiagniecia</string>
+        - Pawel Kopec\n\t- poziomy trudnosci\n
+        - Bartosz Golabek\n\t - generator pytan i odpowiedzi\n
+        - Michal Tartanus\n\t - manager projektu\n
+        - Karol Szkup\n\t - osiagniecia</string>
     <string name="text_gra">Ekran gry</string>
     <string name="text_postep">Zadanie </string>
     <string name="text_odp">Odp</string>
     <string name="text_bad">ZLE!</string>
     <string name="text_good">Dobrze!</string>
-    <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
-        Po puszczeniu przyciskow X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
+    <string name="text_inst">Dotknij i przytrzymaj oba przyciski X,
+        aby zaczac rozgrywke.</string>
 
     <string name="text_achiev0">50% poprawnych odpowiedzi</string>
     <string name="text_achiev1">75% poprawnych odpowiedzi</string>

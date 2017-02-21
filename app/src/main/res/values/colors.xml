@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#323232</color>
+    <color name="colorPrimary">#232323</color>
     <color name="colorPrimaryDark">#212121</color>
-    <color name="colorAccent">#882222</color>
+    <color name="colorAccent">#991111</color>
 
     <color name="colorbad">#FF0000</color>
     <color name="colorgood">#00FF00</color>
 
-    <color name="colorButton">#448844</color>
+    <color name="colorButton">#212121</color>
 
     <color name="black_overlay">#660000</color>
 </resources>
