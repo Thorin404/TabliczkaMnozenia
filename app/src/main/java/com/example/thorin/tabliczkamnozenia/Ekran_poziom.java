@@ -1,15 +1,14 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.widget.Button;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
-public class Ekran_poziom extends AppCompatActivity {
+public class Ekran_poziom extends Activity {
 
     Button przy0, przy1, przy2, przy3, przy4;
     @Override

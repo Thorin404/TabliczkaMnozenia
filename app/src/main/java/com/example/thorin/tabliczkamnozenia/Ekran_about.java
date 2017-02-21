@@ -1,11 +1,11 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import android.app.Activity;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Ekran_about extends AppCompatActivity {
+public class Ekran_about extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

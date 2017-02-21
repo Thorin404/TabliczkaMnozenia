@@ -41,12 +41,12 @@
     <string name="text_inst">Dotknij i przytrzymaj oba przyciski X, aby zobaczyc pytanie.\n
         Po puszczeniu przyciskow X pozostanie 5 sekund na wpisanie odpowiedzi.</string>
 
-    <string name="text_achiev0">50% dobrych odpowiedzi</string>
-    <string name="text_achiev1">75% dobrych odpowiedzi</string>
-    <string name="text_achiev2">100% dobrych odpowiedzi</string>
-    <string name="text_achiev3">100% dobrych odpowiedzi przez 3 dni</string>
-    <string name="text_achiev4">100% dobrych odpowiedzi przez 7 dni</string>
-    <string name="text_achiev5">100% dobrych odpowiedzi przez 14 dni w dwoch grach</string>
-    <string name="text_achiev6">100% dobrych odpowiedzi przez 30 dni w czterech grach</string>
+    <string name="text_achiev0">50% poprawnych odpowiedzi</string>
+    <string name="text_achiev1">75% poprawnych odpowiedzi</string>
+    <string name="text_achiev2">100% poprawnych odpowiedzi</string>
+    <string name="text_achiev3">100% poprawnych odpowiedzi przez 3 dni</string>
+    <string name="text_achiev4">100% poprawnych odpowiedzi przez 7 dni</string>
+    <string name="text_achiev5">100% poprawnych odpowiedzi przez 14 dni w dwoch grach</string>
+    <string name="text_achiev6">100% poprawnych odpowiedzi przez 30 dni w czterech grach</string>
     <string name="text_achiev7">"A imie jego bedzie czterdziesci i cztery"</string>
 </resources>

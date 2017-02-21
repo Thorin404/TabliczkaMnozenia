@@ -1,15 +1,15 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 
-public class Ekran_achiev extends AppCompatActivity {
+public class Ekran_achiev extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class Ekran_achiev extends AppCompatActivity {
         zmienfont(R.id.checkedTextView6);
         zmienfont(R.id.checkedTextView7);
         zmienfont(R.id.button);
+        zmienfont(R.id.achiev);
     }
 
     private void zmienfont(int id){
