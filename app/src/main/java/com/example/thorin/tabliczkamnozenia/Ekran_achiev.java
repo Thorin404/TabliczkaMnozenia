@@ -35,24 +35,16 @@ public class Ekran_achiev extends Activity {
         button1.setTypeface(typeFace);
     }
 
-    void setachiev(){
+    private void setachiev(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_achiev.this);
         SharedPreferences.Editor myEditor = myPreferences.edit();
         if (single_achiev.getwin() >= 0.5) myEditor.putInt("Achiev0", 1);
         if (single_achiev.getwin() >= 0.75) myEditor.putInt("Achiev1", 1);
         if (single_achiev.getwin() == 1) myEditor.putInt("Achiev2", 1);
-        if (single_achiev.getwin() == 1) {
-            myEditor.putInt("Achiev3", 1);
-        }
-        if (single_achiev.getwin() == 1) {
-            myEditor.putInt("Achiev4", 1);
-        }
-        if (single_achiev.getwin() == 1) {
-            myEditor.putInt("Achiev5", 1);
-        }
-        if (single_achiev.getwin() == 1) {
-            myEditor.putInt("Achiev6", 1);
-        }
+        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev3", 1);
+        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev4", 1);
+        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev5", 1);
+        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev6", 1);
         if (single_achiev.getwin() == 0.44) myEditor.putInt("Achiev7", 1);
 
         myEditor.commit();
