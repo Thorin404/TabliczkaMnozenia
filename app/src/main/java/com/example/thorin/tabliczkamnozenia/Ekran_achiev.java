@@ -9,11 +9,18 @@ import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 public class Ekran_achiev extends Activity {
-    public static final String PREFS_ACHIEV = "achievement";
+    public static String PREFS_ACHIEV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences settings = getSharedPreferences("poziom", 0);
+        int poziom = settings.getInt("poziom", 0);
+        if(poziom == 0) PREFS_ACHIEV = "achiev_P0";
+        else if(poziom == 1) PREFS_ACHIEV = "achiev_P1";
+        else if(poziom == 2) PREFS_ACHIEV = "achiev_P2";
+        else if(poziom == 3) PREFS_ACHIEV = "achiev_P3";
+        else PREFS_ACHIEV = "achiev_P4";
         setContentView(R.layout.activity_ekran_achiev);
         setachiev();
         achievon();
@@ -27,6 +34,9 @@ public class Ekran_achiev extends Activity {
         zmienfont(R.id.checkedTextView7);
         zmienfont(R.id.button);
         zmienfont(R.id.achiev);
+        View view = findViewById(R.id.checkedTextView7);
+        view.setVisibility(View.INVISIBLE);
+        if (poziom == 4) view.setVisibility(View.VISIBLE);
     }
 
     private void zmienfont(int id){
@@ -38,20 +48,26 @@ public class Ekran_achiev extends Activity {
     private void setachiev(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         float result = settings.getFloat("result", 0f);
+        int days = settings.getInt("Achiev_days", 0);
+        int wons = settings.getInt("Achiev_wons", 0);
+        int roznica = 1;
+        settings = getSharedPreferences(PREFS_ACHIEV,0);
         SharedPreferences.Editor editor = settings.edit();
         if (result >= 0.5) editor.putInt("Achiev0", 1);
         if (result >= 0.75) editor.putInt("Achiev1", 1);
-        if (result == 1) editor.putInt("Achiev2", 1);
         if (result == 1) {
-            editor.putInt("Achiev3", 1);
-        }
-        if (result == 1) {
-            editor.putInt("Achiev4", 1);
-        }
-        if (result == 1) {
+            editor.putInt("Achiev2", 1);
+            if (roznica == 1) {
+                wons = 0;
+                days++;
+                editor.putInt("Achiev_days", days);
+            } else if (roznica == 0) {
+                wons++;
+                editor.putInt("Achiev_wons", wons);
+            }
+            if (days >= 3) editor.putInt("Achiev3", 1);
+            if (days >= 7) editor.putInt("Achiev4", 1);
             editor.putInt("Achiev5", 1);
-        }
-        if (result == 1) {
             editor.putInt("Achiev6", 1);
         }
         if (result == 0.44) editor.putInt("Achiev7", 1);

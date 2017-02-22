@@ -24,6 +24,7 @@ public class Ekran_gry extends Activity {
     int liczbap, cznodp;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
+    public static String PREFS_ACHIEV;
 
     //przy tworzeniu
     @Override
@@ -141,13 +142,22 @@ public class Ekran_gry extends Activity {
         //przekazanie wyniku do achievmentow
         float cos = Float.valueOf(liczbap);
         float soc = Float.valueOf(dbr);
-        String year = "2017", month = "2", day = "22";
-        SharedPreferences settings = getSharedPreferences("achievement", 0);
+        SharedPreferences settings = getSharedPreferences("poziom", 0);
+        int poziom = settings.getInt("poziom", 0);
+        if(poziom == 0) PREFS_ACHIEV = "achiev_P0";
+        else if(poziom == 1) PREFS_ACHIEV = "achiev_P1";
+        else if(poziom == 2) PREFS_ACHIEV = "achiev_P2";
+        else if(poziom == 3) PREFS_ACHIEV = "achiev_P3";
+        else PREFS_ACHIEV = "achiev_P4";
+        settings = getSharedPreferences(PREFS_ACHIEV, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat("result", soc/cos);
-        editor.putString("year", year);
-        editor.putString("month",month);
-        editor.putString("day", day);
+        if ((soc/cos) == 1) {
+            String year = "2017", month = "02", day = "22";
+            editor.putString("year", year);
+            editor.putString("month", month);
+            editor.putString("day", day);
+        }
         editor.commit();
         super.onDestroy();
     }
