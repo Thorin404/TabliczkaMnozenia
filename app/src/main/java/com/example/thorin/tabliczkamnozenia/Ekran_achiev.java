@@ -3,13 +3,13 @@ package com.example.thorin.tabliczkamnozenia;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 public class Ekran_achiev extends Activity {
+    public static final String PREFS_ACHIEV = "achievement";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,30 +36,40 @@ public class Ekran_achiev extends Activity {
     }
 
     private void setachiev(){
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_achiev.this);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        if (single_achiev.getwin() >= 0.5) myEditor.putInt("Achiev0", 1);
-        if (single_achiev.getwin() >= 0.75) myEditor.putInt("Achiev1", 1);
-        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev2", 1);
-        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev3", 1);
-        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev4", 1);
-        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev5", 1);
-        if (single_achiev.getwin() == 1) myEditor.putInt("Achiev6", 1);
-        if (single_achiev.getwin() == 0.44) myEditor.putInt("Achiev7", 1);
+        SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
+        float result = settings.getFloat("result", 0f);
+        SharedPreferences.Editor editor = settings.edit();
+        if (result >= 0.5) editor.putInt("Achiev0", 1);
+        if (result >= 0.75) editor.putInt("Achiev1", 1);
+        if (result == 1) editor.putInt("Achiev2", 1);
+        if (result == 1) {
+            editor.putInt("Achiev3", 1);
+        }
+        if (result == 1) {
+            editor.putInt("Achiev4", 1);
+        }
+        if (result == 1) {
+            editor.putInt("Achiev5", 1);
+        }
+        if (result == 1) {
+            editor.putInt("Achiev6", 1);
+        }
+        if (result == 0.44) editor.putInt("Achiev7", 1);
 
-        myEditor.commit();
+        // Commit the edits!
+        editor.commit();
     }
 
     private void achievon(){
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_achiev.this);
-        if (myPreferences.getInt("Achiev0", 0) == 1) findAndCheck(R.id.checkedTextView0);
-        if (myPreferences.getInt("Achiev1", 0) == 1) findAndCheck(R.id.checkedTextView1);
-        if (myPreferences.getInt("Achiev2", 0) == 1) findAndCheck(R.id.checkedTextView2);
-        if (myPreferences.getInt("Achiev3", 0) == 1) findAndCheck(R.id.checkedTextView3);
-        if (myPreferences.getInt("Achiev4", 0) == 1) findAndCheck(R.id.checkedTextView4);
-        if (myPreferences.getInt("Achiev5", 0) == 1) findAndCheck(R.id.checkedTextView5);
-        if (myPreferences.getInt("Achiev6", 0) == 1) findAndCheck(R.id.checkedTextView6);
-        if (myPreferences.getInt("Achiev7", 0) == 1) findAndCheck(R.id.checkedTextView7);
+        SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
+        if (settings.getInt("Achiev0", 0) == 1) findAndCheck(R.id.checkedTextView0);
+        if (settings.getInt("Achiev1", 0) == 1) findAndCheck(R.id.checkedTextView1);
+        if (settings.getInt("Achiev2", 0) == 1) findAndCheck(R.id.checkedTextView2);
+        if (settings.getInt("Achiev3", 0) == 1) findAndCheck(R.id.checkedTextView3);
+        if (settings.getInt("Achiev4", 0) == 1) findAndCheck(R.id.checkedTextView4);
+        if (settings.getInt("Achiev5", 0) == 1) findAndCheck(R.id.checkedTextView5);
+        if (settings.getInt("Achiev6", 0) == 1) findAndCheck(R.id.checkedTextView6);
+        if (settings.getInt("Achiev7", 0) == 1) findAndCheck(R.id.checkedTextView7);
     }
 
     private void achievoff(){
@@ -89,16 +99,17 @@ public class Ekran_achiev extends Activity {
     }
 
     private void czyszczenie(){
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_achiev.this);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.putInt("Achiev0",0);
-        myEditor.putInt("Achiev1",0);
-        myEditor.putInt("Achiev2",0);
-        myEditor.putInt("Achiev3",0);
-        myEditor.putInt("Achiev4",0);
-        myEditor.putInt("Achiev5",0);
-        myEditor.putInt("Achiev6",0);
-        myEditor.putInt("Achiev7",0);
-        myEditor.commit();
+        SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("result", 0f);
+        editor.putInt("Achiev0", 0);
+        editor.putInt("Achiev1", 0);
+        editor.putInt("Achiev2", 0);
+        editor.putInt("Achiev3", 0);
+        editor.putInt("Achiev4", 0);
+        editor.putInt("Achiev5", 0);
+        editor.putInt("Achiev6", 0);
+        editor.putInt("Achiev7", 0);
+        editor.commit();
     }
 }

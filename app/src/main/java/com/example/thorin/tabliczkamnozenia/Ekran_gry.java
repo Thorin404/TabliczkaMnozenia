@@ -1,6 +1,7 @@
 package com.example.thorin.tabliczkamnozenia;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,17 +21,21 @@ public class Ekran_gry extends Activity {
     Button przy5, przy6, przy7, przy8, przy9;
     String string,zmie;
     int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
+    int liczbap, cznodp;
     Random rand = new Random();
     AsyncTask<Void, Integer, Void> task;
-    //pobieranie liczby pytan i czasu na odpowiedz
-    int liczbap = single_poziom.getpytan();
-    int cznodp = single_poziom.getczas();
 
     //przy tworzeniu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran_gry);
+        //pobieranie liczby pytan i czasu na odpowiedz
+        SharedPreferences settings = getSharedPreferences("poziom", 0);
+        int poziom = settings.getInt("poziom", 0);
+        liczbap = single_poziom.getpytan(poziom);
+        cznodp = single_poziom.getczas(poziom);
+
         buttonStartProgress0 = (Button) findViewById(R.id.button10);
         buttonStartProgress1 = (Button) findViewById(R.id.button11);
         final TextView textview = (TextView)findViewById(R.id.odp);
@@ -134,9 +139,16 @@ public class Ekran_gry extends Activity {
     public void onDestroy(){
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
-        double cos = Double.valueOf(liczbap);
-        double soc = Double.valueOf(dbr);
-        single_achiev.setwin(soc/cos);
+        float cos = Float.valueOf(liczbap);
+        float soc = Float.valueOf(dbr);
+        String year = "2017", month = "2", day = "22";
+        SharedPreferences settings = getSharedPreferences("achievement", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat("result", soc/cos);
+        editor.putString("year", year);
+        editor.putString("month",month);
+        editor.putString("day", day);
+        editor.commit();
         super.onDestroy();
     }
 

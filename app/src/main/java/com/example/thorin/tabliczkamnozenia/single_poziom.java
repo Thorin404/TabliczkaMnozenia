@@ -5,9 +5,7 @@ package com.example.thorin.tabliczkamnozenia;
  */
 public class single_poziom {
 
-    private static int poziom = 0;
-
-    static int getpytan() {
+    static int getpytan(int poziom) {
         int pytan;
         if(poziom == 0) pytan = 10;
         else if(poziom == 1) pytan = 20;
@@ -17,7 +15,7 @@ public class single_poziom {
         return pytan;
     }
 
-    static int getczas() {
+    static int getczas(int poziom) {
         int czas;
         if(poziom == 0)czas = 300;
         else if(poziom == 1) czas = 200;
@@ -25,14 +23,6 @@ public class single_poziom {
         else if(poziom == 3) czas = 100;
         else czas = 50;
         return czas;
-    }
-
-    static int getpoziom() {
-        return poziom;
-    }
-
-    static void setpoziom(int a) {
-        poziom = a;
     }
 
     private single_poziom() {

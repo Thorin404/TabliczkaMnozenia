@@ -14,8 +14,8 @@ public class Ekran_poziom extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_poziom.this);
-        int poziom = myPreferences.getInt("poziom", 0);
+        SharedPreferences settings = getSharedPreferences("poziom", 0);
+        int poziom = settings.getInt("poziom", 0);
         setContentView(R.layout.activity_ekran_poziom);
         przy0 = (Button) findViewById(R.id.button0);
         przy1 = (Button) findViewById(R.id.button1);
@@ -62,11 +62,10 @@ public class Ekran_poziom extends Activity {
     }
     //costamkolwiek
     private void przenies(int a){
-        single_poziom.setpoziom(a);
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(Ekran_poziom.this);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.putInt("poziom",single_poziom.getpoziom());
-        myEditor.commit();
+        SharedPreferences settings = getSharedPreferences("poziom", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("poziom",a);
+        editor.commit();
         finish();
     }
 }
