@@ -7,7 +7,7 @@ public class single_poziom {
 
     static int getpytan(int poziom) {
         int pytan;
-        if(poziom == 0) pytan = 10;
+        if(poziom == 0) pytan = 1;
         else if(poziom == 1) pytan = 20;
         else if(poziom == 2) pytan = 30;
         else if(poziom == 3) pytan = 40;

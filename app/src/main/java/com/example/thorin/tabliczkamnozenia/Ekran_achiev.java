@@ -48,32 +48,17 @@ public class Ekran_achiev extends Activity {
     private void setachiev(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         float result = settings.getFloat("result", 0f);
-        int days = settings.getInt("Achiev_days", 0);
-        int wons = settings.getInt("Achiev_wons", 0);
-        int roznica = 1;
         settings = getSharedPreferences(PREFS_ACHIEV,0);
         SharedPreferences.Editor editor = settings.edit();
         if (result >= 0.5) editor.putInt("Achiev0", 1);
         if (result >= 0.75) editor.putInt("Achiev1", 1);
-        if (result == 1) {
-            editor.putInt("Achiev2", 1);
-            if (roznica == 1) {
-                wons = 0;
-                days++;
-                editor.putInt("Achiev_days", days);
-            } else if (roznica == 0) {
-                wons++;
-                editor.putInt("Achiev_wons", wons);
-            }
-            if (days >= 3) editor.putInt("Achiev3", 1);
-            if (days >= 7) editor.putInt("Achiev4", 1);
-            editor.putInt("Achiev5", 1);
-            editor.putInt("Achiev6", 1);
-        }
+        if (result == 1) editor.putInt("Achiev2", 1);
+        if (settings.getInt("Achiev_days", 0) >= 3) editor.putInt("Achiev3", 1);
+        if (settings.getInt("Achiev_days", 0) >= 7) editor.putInt("Achiev4", 1);
+        if (settings.getInt("Achiev_days2", 0) >= 14) editor.putInt("Achiev5", 1);
+        if (settings.getInt("Achiev_days4", 0) >= 30) editor.putInt("Achiev6", 1);
         if (result == 0.44) editor.putInt("Achiev7", 1);
-
-        // Commit the edits!
-        editor.commit();
+        editor.apply();
     }
 
     private void achievon(){
@@ -126,6 +111,8 @@ public class Ekran_achiev extends Activity {
         editor.putInt("Achiev5", 0);
         editor.putInt("Achiev6", 0);
         editor.putInt("Achiev7", 0);
+        editor.putInt("Achiev_days", 0);
+        editor.putInt("Achiev_wons", 0);
         editor.commit();
     }
 }

@@ -140,8 +140,9 @@ public class Ekran_gry extends Activity {
     public void onDestroy(){
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
-        float cos = Float.valueOf(liczbap);
-        float soc = Float.valueOf(dbr);
+        float cos = liczbap, soc = dbr;
+
+        //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
         if(poziom == 0) PREFS_ACHIEV = "achiev_P0";
@@ -149,7 +150,12 @@ public class Ekran_gry extends Activity {
         else if(poziom == 2) PREFS_ACHIEV = "achiev_P2";
         else if(poziom == 3) PREFS_ACHIEV = "achiev_P3";
         else PREFS_ACHIEV = "achiev_P4";
+        int days = settings.getInt("Achiev_days", 0);
+        int days2 = settings.getInt("Achiev_days2", 0);
+        int days4 = settings.getInt("Achiev_days4", 0);
+        int wons = settings.getInt("Achiev_wons", 0);
         settings = getSharedPreferences(PREFS_ACHIEV, 0);
+        int roznica = 1;
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat("result", soc/cos);
         if ((soc/cos) == 1) {
@@ -157,8 +163,27 @@ public class Ekran_gry extends Activity {
             editor.putString("year", year);
             editor.putString("month", month);
             editor.putString("day", day);
+            if (roznica == 1) {
+                if (wons < 2) editor.putInt("Achiev_days2", 0);
+                if (wons < 4) editor.putInt("Achiev_days4", 0);
+                wons = 0;
+                days++;
+                days2++;
+                days4++;
+                editor.putInt("Achiev_days", days);
+            } else if (roznica == 0) {
+                wons++;
+                editor.putInt("Achiev_wons", wons);
+                if (wons == 2) editor.putInt("Achiev_days2", days2);
+                if (wons == 4) editor.putInt("Achiev_days4", days4);
+            } else {
+                editor.putInt("Achiev_days", 0);
+                editor.putInt("Achiev_days2", 0);
+                editor.putInt("Achiev_days4", 0);
+            }
         }
-        editor.commit();
+        editor.apply();
+        //******************
         super.onDestroy();
     }
 

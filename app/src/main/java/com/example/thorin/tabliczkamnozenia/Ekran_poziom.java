@@ -65,7 +65,7 @@ public class Ekran_poziom extends Activity {
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("poziom",a);
-        editor.commit();
+        editor.apply();
         finish();
     }
 }
