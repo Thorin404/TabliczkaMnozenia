@@ -15,12 +15,7 @@ public class Ekran_achiev extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
-        int poziom = settings.getInt("poziom", 0);
-        if(poziom == 0) PREFS_ACHIEV = "achiev_P0";
-        else if(poziom == 1) PREFS_ACHIEV = "achiev_P1";
-        else if(poziom == 2) PREFS_ACHIEV = "achiev_P2";
-        else if(poziom == 3) PREFS_ACHIEV = "achiev_P3";
-        else PREFS_ACHIEV = "achiev_P4";
+        PREFS_ACHIEV = ClassGra.jakipoziom(settings.getInt("poziom", 0));
         setContentView(R.layout.activity_ekran_achiev);
         setachiev();
         achievon();
@@ -36,7 +31,7 @@ public class Ekran_achiev extends Activity {
         zmienfont(R.id.achiev);
         View view = findViewById(R.id.checkedTextView7);
         view.setVisibility(View.INVISIBLE);
-        if (poziom == 4) view.setVisibility(View.VISIBLE);
+        if (settings.getInt("poziom", 0) == 4) view.setVisibility(View.VISIBLE);
     }
 
     private void zmienfont(int id){

@@ -11,34 +11,30 @@ import android.view.View;
 public class Ekran_poziom extends Activity {
 
     Button przy0, przy1, przy2, przy3, przy4;
+    Button[] przytab = {przy0, przy1, przy2, przy3, przy4};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
         setContentView(R.layout.activity_ekran_poziom);
-        przy0 = (Button) findViewById(R.id.button0);
-        przy1 = (Button) findViewById(R.id.button1);
-        przy2 = (Button) findViewById(R.id.button2);
-        przy3 = (Button) findViewById(R.id.button3);
-        przy4 = (Button) findViewById(R.id.button4);
-        przy0.setEnabled(true);
-        przy1.setEnabled(true);
-        przy2.setEnabled(true);
-        przy3.setEnabled(true);
-        przy4.setEnabled(true);
-        if (poziom == 0) przy0.setEnabled(false);
-        else if (poziom == 1) przy1.setEnabled(false);
-        else if (poziom == 2) przy2.setEnabled(false);
-        else if (poziom == 3) przy3.setEnabled(false);
-        else if (poziom == 4) przy4.setEnabled(false);
+        przytab[0] = (Button) findViewById(R.id.button0);
+        przytab[1] = (Button) findViewById(R.id.button1);
+        przytab[2] = (Button) findViewById(R.id.button2);
+        przytab[3] = (Button) findViewById(R.id.button3);
+        przytab[4] = (Button) findViewById(R.id.button4);
+        for (int i = 0; i < 5; i++) {
+            przytab[i].setEnabled(true);
+        }
+        if (poziom == 0) przytab[0].setEnabled(false);
+        else if (poziom == 1) przytab[1].setEnabled(false);
+        else if (poziom == 2) przytab[2].setEnabled(false);
+        else if (poziom == 3) przytab[3].setEnabled(false);
+        else if (poziom == 4) przytab[4].setEnabled(false);
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
-        przy0.setTypeface(typeFace);
-        przy1.setTypeface(typeFace);
-        przy2.setTypeface(typeFace);
-        przy3.setTypeface(typeFace);
-        przy4.setTypeface(typeFace);
-
+        for (int i = 0; i < 5; i++){
+            przytab[i].setTypeface(typeFace);
+        }
     }
     //bardzo latwy
     public void sendDiff1(View view) {
