@@ -12,13 +12,17 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Ekran_gry extends Activity {
     ProgressBar progressBar;
     Button przy, przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9, przy10, przy11;
     Button[] przytab = {przy0, przy1, przy2, przy3, przy4,
-            przy5, przy6, przy7, przy8, przy9, przy10 ,przy11};
-    String string,zmie;
+            przy5, przy6, przy7, przy8, przy9, przy10, przy11};
+    String string, zmie;
     int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
     int liczbap, cznodp;
     AsyncTask<Void, Integer, Void> task;
@@ -35,7 +39,7 @@ public class Ekran_gry extends Activity {
         liczbap = single_poziom.getpytan(poziom);
         cznodp = single_poziom.getczas(poziom);
 
-        final TextView textview = (TextView)findViewById(R.id.odp);
+        final TextView textview = (TextView) findViewById(R.id.odp);
         przytab[0] = (Button) findViewById(R.id.button0);
         przytab[1] = (Button) findViewById(R.id.button1);
         przytab[2] = (Button) findViewById(R.id.button2);
@@ -55,54 +59,56 @@ public class Ekran_gry extends Activity {
         przytab[10].setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     a = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     a = 0;
                 }
-                if (a == 1 && b == 1){
+                if (a == 1 && b == 1) {
                     sendon();
-                    a =  b = 0;
+                    a = b = 0;
                     task = new BackgroundAsyncTask().execute();
-                } return true;
+                }
+                return true;
             }
         });
         przytab[11].setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     b = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     b = 0;
                 }
-                if (a == 1 && b == 1){
+                if (a == 1 && b == 1) {
                     sendon();
                     a = b = 0;
                     task = new BackgroundAsyncTask().execute();
-                } return true;
+                }
+                return true;
             }
         });
 
         //klikanie cyferek
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             setOnClickListener(przytab[i], textview);
         }
 
         //wylaczenie klawiatury
         numer(false);
 
-        final TextView tvzad = (TextView)findViewById(R.id.zadanie);
+        final TextView tvzad = (TextView) findViewById(R.id.zadanie);
         tvzad.setText("Zadanie " + licz + "/" + liczbap);
 
-        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
-        for (int i = 0; i < 12; i++){
+        Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/EraserRegular.ttf");
+        for (int i = 0; i < 12; i++) {
             przytab[i].setTypeface(typeFace);
         }
-        final TextView tvpyt = (TextView)findViewById(R.id.pyt);
-        final TextView tvbad = (TextView)findViewById(R.id.bad);
-        final TextView tvgood = (TextView)findViewById(R.id.good);
-        final TextView tvinst = (TextView)findViewById(R.id.inst);
-        final TextView tvwynik = (TextView)findViewById(R.id.wynik);
+        final TextView tvpyt = (TextView) findViewById(R.id.pyt);
+        final TextView tvbad = (TextView) findViewById(R.id.bad);
+        final TextView tvgood = (TextView) findViewById(R.id.good);
+        final TextView tvinst = (TextView) findViewById(R.id.inst);
+        final TextView tvwynik = (TextView) findViewById(R.id.wynik);
         przy = (Button) findViewById(R.id.button);
         tvzad.setTypeface(typeFace);
         tvpyt.setTypeface(typeFace);
@@ -115,45 +121,52 @@ public class Ekran_gry extends Activity {
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
         float cos = liczbap, soc = dbr;
-
         //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
         PREFS_ACHIEV = ClassGra.jakipoziom(poziom);
-        int days = settings.getInt("Achiev_days", 0);
-        int days2 = settings.getInt("Achiev_days2", 0);
-        int days4 = settings.getInt("Achiev_days4", 0);
-        int wons = settings.getInt("Achiev_wons", 0);
         settings = getSharedPreferences(PREFS_ACHIEV, 0);
-        int roznica = 1;
+        int roznica = settings.getInt("Achiev_roz", 0);
+        int days = settings.getInt("Achiev_days", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat("result", soc/cos);
-        if ((soc/cos) == 1) {
-            String year = "2017", month = "02", day = "22";
-            editor.putString("year", year);
-            editor.putString("month", month);
-            editor.putString("day", day);
-            if (roznica == 1) {
-                if (wons < 2) editor.putInt("Achiev_days2", 0);
-                if (wons < 4) editor.putInt("Achiev_days4", 0);
+        editor.putFloat("result", soc / cos);
+        if ((soc / cos) == 1) {
+            int wons = settings.getInt("Achiev_wons", 0);
+            String data1zw = settings.getString("Achiev_date", "2017,2,27");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+            Date date = new Date();
+            if (roznica == 0) {
                 wons = 0;
-                days++;
-                days2++;
-                days4++;
-                editor.putInt("Achiev_days", days);
-            } else if (roznica == 0) {
-                wons++;
                 editor.putInt("Achiev_wons", wons);
-                if (wons == 2) editor.putInt("Achiev_days2", days2);
-                if (wons == 4) editor.putInt("Achiev_days4", days4);
-            } else {
-                editor.putInt("Achiev_days", 0);
-                editor.putInt("Achiev_days2", 0);
-                editor.putInt("Achiev_days4", 0);
+                roznica = 1;
+                editor.putInt("Achiev_roz", roznica);
+                Date now = new Date();
+                String dateString = dateFormat.format(now);
+                editor.putString("Achiev_date", dateString);
+            }
+            if (roznica == 1) {
+                wons++;
+                days++;
+                editor.putInt("Achiev_wons", wons);
+                editor.putInt("Achiev_days", days);
+            }
+            if (wons >= 2) {
+                try {
+                    Date pierwszyraz = dateFormat.parse(data1zw);
+                    long roz = ClassGra.difference(date, pierwszyraz);
+                    if (roz <= 14) {
+                        editor.putInt("Achiev_days2", 1);
+                        if (wons >= 4 && roz <= 30) {
+                            editor.putInt("Achiev_days4", 1);
+                        }
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }
         editor.apply();
@@ -162,7 +175,7 @@ public class Ekran_gry extends Activity {
     }
 
     //wpisywanie w odpowiedź
-    public void setOnClickListener(final Button przy, final TextView textview){
+    public void setOnClickListener(final Button przy, final TextView textview) {
         przy.setOnClickListener(new Button.OnClickListener() {
 
             @Override
@@ -170,7 +183,8 @@ public class Ekran_gry extends Activity {
                 string = przy.getText().toString();
                 textview.setText(textview.getText().toString() + string);
                 sprawdz();
-            }});
+            }
+        });
     }
 
     //odliczanie czasu
@@ -178,9 +192,9 @@ public class Ekran_gry extends Activity {
             AsyncTask<Void, Integer, Void> {
 
         int myProgress;
-        final TextView tvopd = (TextView)findViewById(R.id.odp);
-        final TextView tvpyt = (TextView)findViewById(R.id.pyt);
-        final TextView tvzad = (TextView)findViewById(R.id.zadanie);
+        final TextView tvopd = (TextView) findViewById(R.id.odp);
+        final TextView tvpyt = (TextView) findViewById(R.id.pyt);
+        final TextView tvzad = (TextView) findViewById(R.id.zadanie);
 
         @Override
         protected void onPostExecute(Void result) {
@@ -228,7 +242,7 @@ public class Ekran_gry extends Activity {
         }
 
         @Override
-        protected void onCancelled(Void result){
+        protected void onCancelled(Void result) {
             numer(false);
             if (licz == liczbap) koniec();
             licz++;
@@ -238,12 +252,12 @@ public class Ekran_gry extends Activity {
     }
 
     //wyłączanie i właczanie napisów
-    private void findAndMakeVisible(int id){
+    private void findAndMakeVisible(int id) {
         View view = findViewById(id);
         view.setVisibility(View.VISIBLE);
     }
 
-    private void findAndMakeInvisible(int id){
+    private void findAndMakeInvisible(int id) {
         View view = findViewById(id);
         view.setVisibility(View.INVISIBLE);
     }
@@ -298,16 +312,16 @@ public class Ekran_gry extends Activity {
     }
 
     //true wlacza numeryczna, false wylacza numeryczna
-    void numer(boolean a){
-        for (int i = 0; i < 12; i++){
+    void numer(boolean a) {
+        for (int i = 0; i < 12; i++) {
             przytab[i].setEnabled(a);
-            if (i>9) przytab[i].setEnabled(!a);
+            if (i > 9) przytab[i].setEnabled(!a);
         }
     }
 
     //wyswietla wynik i konczy
-    void koniec(){
-        final TextView tvwynik = (TextView)findViewById(R.id.wynik);
+    void koniec() {
+        final TextView tvwynik = (TextView) findViewById(R.id.wynik);
         przytab[10].setEnabled(false);
         przytab[11].setEnabled(false);
         findAndMakeInvisible(R.id.inst);
