@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Ekran_gry extends Activity {
+public class ScreenGame extends Activity {
     ProgressBar progressBar;
     Button przy, przy0, przy1, przy2, przy3, przy4;
     Button przy5, przy6, przy7, przy8, przy9, przy10, przy11;
@@ -36,8 +36,8 @@ public class Ekran_gry extends Activity {
         //pobieranie liczby pytan i czasu na odpowiedz
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
-        liczbap = single_poziom.getpytan(poziom);
-        cznodp = single_poziom.getczas(poziom);
+        liczbap = SingleLevel.getQuestion(poziom);
+        cznodp = SingleLevel.getTime(poziom);
 
         final TextView textview = (TextView) findViewById(R.id.odp);
         przytab[0] = (Button) findViewById(R.id.button0);
@@ -65,7 +65,7 @@ public class Ekran_gry extends Activity {
                     a = 0;
                 }
                 if (a == 1 && b == 1) {
-                    sendon();
+                    sendOn();
                     a = b = 0;
                     task = new BackgroundAsyncTask().execute();
                 }
@@ -81,7 +81,7 @@ public class Ekran_gry extends Activity {
                     b = 0;
                 }
                 if (a == 1 && b == 1) {
-                    sendon();
+                    sendOn();
                     a = b = 0;
                     task = new BackgroundAsyncTask().execute();
                 }
@@ -95,7 +95,7 @@ public class Ekran_gry extends Activity {
         }
 
         //wylaczenie klawiatury
-        numer(false);
+        numeric(false);
 
         final TextView tvzad = (TextView) findViewById(R.id.zadanie);
         tvzad.setText("Zadanie " + licz + "/" + liczbap);
@@ -128,7 +128,7 @@ public class Ekran_gry extends Activity {
         //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
-        PREFS_ACHIEV = ClassGra.jakipoziom(poziom);
+        PREFS_ACHIEV = ClassGra.whichLevel(poziom);
         settings = getSharedPreferences(PREFS_ACHIEV, 0);
         int roznica = settings.getInt("Achiev_roz", 0);
         int days = settings.getInt("Achiev_days", 0);
@@ -198,8 +198,8 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onPostExecute(Void result) {
-            numer(false);
-            if (licz == liczbap) koniec();
+            numeric(false);
+            if (licz == liczbap) end();
             licz++;
             //sprawdzenie wyniku na koniec czasu
             zmie = tvopd.getText().toString();
@@ -216,15 +216,15 @@ public class Ekran_gry extends Activity {
             if (licz == 0) licz++;
             myProgress = 100;
             //losowanie liczb c i d
-            c = ClassGra.losuj();
-            d = ClassGra.losuj();
+            c = ClassGra.randomize();
+            d = ClassGra.randomize();
             s = c * d;
             //wyświetlanie pytania
             tvpyt.setText(c + " * " + d + " =");
             //czyszczenie odpowiedzi
             tvopd.setText("");
             tvzad.setText("Zadanie " + licz + "/" + liczbap);
-            numer(true);
+            numeric(true);
         }
 
         @Override
@@ -243,8 +243,8 @@ public class Ekran_gry extends Activity {
 
         @Override
         protected void onCancelled(Void result) {
-            numer(false);
-            if (licz == liczbap) koniec();
+            numeric(false);
+            if (licz == liczbap) end();
             licz++;
             progressBar.setProgress(0);
             super.onCancelled();
@@ -269,15 +269,31 @@ public class Ekran_gry extends Activity {
         zmie = tvopd.getText().toString();
         int convert = Integer.valueOf(zmie);
         //sprawdzanie
-        if (convert == s) {
+        if (isGood(convert)) {
             good();
-        } else if (convert > s) {
-            bad();
-        } else if (s > 9 && convert < s && convert > 9) {
-            bad();
-        } else if (s < 10 && convert < s) {
+        } else if (isBad(convert)) {
             bad();
         }
+    }
+
+    private boolean isBad(int convert){
+        return isTooBig(convert) || isTwoDigitAndTooSmall(convert) || isOneDigitAndTooSmall(convert);
+    }
+
+    private boolean isOneDigitAndTooSmall(int convert) {
+        return s < 10 && convert < s;
+    }
+
+    private boolean isTwoDigitAndTooSmall(int convert) {
+        return s > 9 && convert < s && convert > 9;
+    }
+
+    private boolean isTooBig(int convert) {
+        return convert > s;
+    }
+
+    private boolean isGood(int convert) {
+        return convert == s;
     }
 
     //wyjscie do menu
@@ -286,7 +302,7 @@ public class Ekran_gry extends Activity {
     }
 
     //wyłącza instrukcje włącza pytania
-    public void sendon() {
+    public void sendOn() {
         findAndMakeInvisible(R.id.inst);
         findAndMakeInvisible(R.id.bad);
         findAndMakeInvisible(R.id.good);
@@ -299,7 +315,7 @@ public class Ekran_gry extends Activity {
         dbr++;
         task.cancel(true);
         findAndMakeVisible(R.id.good);
-        numer(false);
+        numeric(false);
     }
 
     //zla odpowiedz
@@ -308,11 +324,11 @@ public class Ekran_gry extends Activity {
         findAndMakeVisible(R.id.bad);
         findAndMakeInvisible(R.id.pyt);
         findAndMakeInvisible(R.id.odp);
-        numer(false);
+        numeric(false);
     }
 
     //true wlacza numeryczna, false wylacza numeryczna
-    void numer(boolean a) {
+    void numeric(boolean a) {
         for (int i = 0; i < 12; i++) {
             przytab[i].setEnabled(a);
             if (i > 9) przytab[i].setEnabled(!a);
@@ -320,7 +336,7 @@ public class Ekran_gry extends Activity {
     }
 
     //wyswietla wynik i konczy
-    void koniec() {
+    void end() {
         final TextView tvwynik = (TextView) findViewById(R.id.wynik);
         przytab[10].setEnabled(false);
         przytab[11].setEnabled(false);

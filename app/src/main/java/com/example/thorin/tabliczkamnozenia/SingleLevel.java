@@ -3,9 +3,9 @@ package com.example.thorin.tabliczkamnozenia;
 /**
  * Created by Thorin on 2017-02-03.
  */
-public class single_poziom {
+public class SingleLevel {
 
-    static int getpytan(int poziom) {
+    static int getQuestion(int poziom) {
         int pytan;
         if(poziom == 0) pytan = 1;
         else if(poziom == 1) pytan = 1;
@@ -15,7 +15,7 @@ public class single_poziom {
         return pytan;
     }
 
-    static int getczas(int poziom) {
+    static int getTime(int poziom) {
         int czas;
         if(poziom == 0)czas = 300;
         else if(poziom == 1) czas = 200;
@@ -25,6 +25,6 @@ public class single_poziom {
         return czas;
     }
 
-    private single_poziom() {
+    private SingleLevel() {
     }
 }

@@ -12,14 +12,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        zmienfont(R.id.button0);
-        zmienfont(R.id.button1);
-        zmienfont(R.id.button2);
-        zmienfont(R.id.button3);
-        zmienfont(R.id.button4);
+        changeFont(R.id.button0);
+        changeFont(R.id.button1);
+        changeFont(R.id.button2);
+        changeFont(R.id.button3);
+        changeFont(R.id.button4);
     }
 
-    private void zmienfont(int id){
+    private void changeFont(int id){
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
         TextView button=(TextView)findViewById(id);
         button.setTypeface(typeFace);
@@ -27,19 +27,19 @@ public class MainActivity extends Activity {
 
     /** akcje po wciśnięciu przycisków */
     public void sendPlay(View view) {
-        Intent intent = new Intent(this, Ekran_gry.class);
+        Intent intent = new Intent(this, ScreenGame.class);
         startActivity(intent);
     }
     public void sendDiff(View view) {
-        Intent intent = new Intent(this, Ekran_poziom.class);
+        Intent intent = new Intent(this, ScreenLevel.class);
         startActivity(intent);
     }
     public void sendAchiev(View view) {
-        Intent intent = new Intent(this, Ekran_achiev.class);
+        Intent intent = new Intent(this, ScreenAchievement.class);
         startActivity(intent);
     }
     public void sendAbout(View view) {
-        Intent intent = new Intent(this, Ekran_about.class);
+        Intent intent = new Intent(this, ScreenAbout.class);
         startActivity(intent);
     }
     public void sendExit(View view) {

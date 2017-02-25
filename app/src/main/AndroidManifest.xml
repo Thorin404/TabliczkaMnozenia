@@ -18,16 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Ekran_gry"
+            android:name=".ScreenGame"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Ekran_poziom"
+            android:name=".ScreenLevel"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Ekran_achiev"
+            android:name=".ScreenAchievement"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Ekran_about"
+            android:name=".ScreenAbout"
             android:screenOrientation="portrait" />
     </application>
 

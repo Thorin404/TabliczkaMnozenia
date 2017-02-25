@@ -8,39 +8,41 @@ import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
 
-public class Ekran_achiev extends Activity {
+public class ScreenAchievement extends Activity {
     public static String PREFS_ACHIEV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
-        PREFS_ACHIEV = ClassGra.jakipoziom(settings.getInt("poziom", 0));
+        PREFS_ACHIEV = ClassGra.whichLevel(settings.getInt("poziom", 0));
         setContentView(R.layout.activity_ekran_achiev);
-        setachiev();
-        achievon();
-        zmienfont(R.id.checkedTextView0);
-        zmienfont(R.id.checkedTextView1);
-        zmienfont(R.id.checkedTextView2);
-        zmienfont(R.id.checkedTextView3);
-        zmienfont(R.id.checkedTextView4);
-        zmienfont(R.id.checkedTextView5);
-        zmienfont(R.id.checkedTextView6);
-        zmienfont(R.id.checkedTextView7);
-        zmienfont(R.id.button);
-        zmienfont(R.id.achiev);
+        setAchievement();
+        achievementOn();
+        changeFont(R.id.checkedTextView0);
+        changeFont(R.id.checkedTextView1);
+        changeFont(R.id.checkedTextView2);
+        changeFont(R.id.checkedTextView3);
+        changeFont(R.id.checkedTextView4);
+        changeFont(R.id.checkedTextView5);
+        changeFont(R.id.checkedTextView6);
+        changeFont(R.id.checkedTextView7);
+        changeFont(R.id.button);
+        changeFont(R.id.achiev);
         View view = findViewById(R.id.checkedTextView7);
         view.setVisibility(View.INVISIBLE);
-        if (settings.getInt("poziom", 0) == 4) view.setVisibility(View.VISIBLE);
+        if (settings.getInt("poziom", 0) == 4) {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
-    private void zmienfont(int id){
+    private void changeFont(int id){
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
         TextView button1=(TextView)findViewById(id);
         button1.setTypeface(typeFace);
     }
 
-    private void setachiev(){
+    private void setAchievement(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         float result = settings.getFloat("result", 0f);
         settings = getSharedPreferences(PREFS_ACHIEV,0);
@@ -56,7 +58,7 @@ public class Ekran_achiev extends Activity {
         editor.apply();
     }
 
-    private void achievon(){
+    private void achievementOn(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         if (settings.getInt("Achiev0", 0) == 1) findAndCheck(R.id.checkedTextView0);
         if (settings.getInt("Achiev1", 0) == 1) findAndCheck(R.id.checkedTextView1);
@@ -68,7 +70,7 @@ public class Ekran_achiev extends Activity {
         if (settings.getInt("Achiev7", 0) == 1) findAndCheck(R.id.checkedTextView7);
     }
 
-    private void achievoff(){
+    private void achievementOff(){
         findAndUncheck(R.id.checkedTextView0);
         findAndUncheck(R.id.checkedTextView1);
         findAndUncheck(R.id.checkedTextView2);
@@ -89,28 +91,24 @@ public class Ekran_achiev extends Activity {
         ctv.setChecked(false);
     }
 
-    public void sendUsun(View view) {
-        czyszczenie();
-        achievoff();
+    public void sendDelete(View view) {
+        clear();
+        achievementOff();
     }
 
-    private void czyszczenie(){
+    private void clear(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat("result", 0f);
-        editor.putInt("Achiev0", 0);
-        editor.putInt("Achiev1", 0);
-        editor.putInt("Achiev2", 0);
-        editor.putInt("Achiev3", 0);
-        editor.putInt("Achiev4", 0);
-        editor.putInt("Achiev5", 0);
-        editor.putInt("Achiev6", 0);
-        editor.putInt("Achiev7", 0);
+        for (int i = 0; i < 8; i++) {
+            editor.putInt("Achiev"+i, 0);
+        }
         editor.putInt("Achiev_days", 0);
         editor.putInt("Achiev_days2", 0);
         editor.putInt("Achiev_days4", 0);
         editor.putInt("Achiev_roz", 0);
         editor.putInt("Achiev_wons", 0);
+        editor.putString("Achiev_data1", "");
         editor.apply();
     }
 }

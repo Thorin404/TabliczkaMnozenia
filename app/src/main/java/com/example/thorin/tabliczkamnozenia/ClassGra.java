@@ -1,5 +1,6 @@
 package com.example.thorin.tabliczkamnozenia;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
 
 public class ClassGra {
 
-    static String jakipoziom(int a){
+    static String whichLevel(int a){
         String poziom;
         if(a == 0) poziom = "achiev_P0";
         else if(a == 1) poziom = "achiev_P1";
@@ -18,7 +19,7 @@ public class ClassGra {
         return poziom;
     }
 
-    static int losuj(){
+    static int randomize(){
         Random rand = new Random();
         int a,b = rand.nextInt(100) + 1;
         if (b >= 0 && b <= 8) a = 1;
@@ -31,5 +32,9 @@ public class ClassGra {
         else if (b >= 77 && b <= 88)  a = 8;
         else a = 9;
         return a;
+    }
+
+    public static long difference(Date d1, Date d2) {
+        return Math.round((d1.getTime() - d2.getTime()) / 86400000.0);
     }
 }

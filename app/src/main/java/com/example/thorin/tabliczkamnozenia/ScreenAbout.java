@@ -5,7 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Ekran_about extends Activity {
+public class ScreenAbout extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
