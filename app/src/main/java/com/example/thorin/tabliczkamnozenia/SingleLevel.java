@@ -7,11 +7,11 @@ public class SingleLevel {
 
     static int getQuestion(int poziom) {
         int pytan;
-        if(poziom == 0) pytan = 1;
-        else if(poziom == 1) pytan = 1;
-        else if(poziom == 2) pytan = 1;
-        else if(poziom == 3) pytan = 1;
-        else pytan = 1;
+        if(poziom == 0) pytan = 10;
+        else if(poziom == 1) pytan = 20;
+        else if(poziom == 2) pytan = 30;
+        else if(poziom == 3) pytan = 40;
+        else pytan = 50;
         return pytan;
     }
 

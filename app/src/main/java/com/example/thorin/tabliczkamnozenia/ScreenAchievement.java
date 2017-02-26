@@ -103,9 +103,9 @@ public class ScreenAchievement extends Activity {
         for (int i = 0; i < 8; i++) {
             editor.putInt("Achiev"+i, 0);
         }
-        editor.putInt("Achiev_days", 0);
-        editor.putInt("Achiev_days2", 0);
-        editor.putInt("Achiev_days4", 0);
+        editor.putInt("Achiev_days", 1);
+        editor.putInt("Achiev_days2", 1);
+        editor.putInt("Achiev_days4", 1);
         editor.putInt("Achiev_wons", 0);
         editor.putInt("Achiev_YearSaved", 1970);
         editor.putInt("Achiev_DaySaved", 1);
