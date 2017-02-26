@@ -8,32 +8,29 @@ import android.os.Bundle;
 import android.view.View;
 
 public class ScreenLevel extends Activity {
+    Button[] buttonsArray = new Button[5];
 
-    Button przy0, przy1, przy2, przy3, przy4;
-    Button[] przytab = {przy0, przy1, przy2, przy3, przy4};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
         setContentView(R.layout.activity_ekran_poziom);
-        przytab[0] = (Button) findViewById(R.id.button0);
-        przytab[1] = (Button) findViewById(R.id.button1);
-        przytab[2] = (Button) findViewById(R.id.button2);
-        przytab[3] = (Button) findViewById(R.id.button3);
-        przytab[4] = (Button) findViewById(R.id.button4);
-        for (int i = 0; i < 5; i++) {
-            przytab[i].setEnabled(true);
-        }
-        if (poziom == 0) przytab[0].setEnabled(false);
-        else if (poziom == 1) przytab[1].setEnabled(false);
-        else if (poziom == 2) przytab[2].setEnabled(false);
-        else if (poziom == 3) przytab[3].setEnabled(false);
-        else if (poziom == 4) przytab[4].setEnabled(false);
+        buttonsArray[0] = (Button) findViewById(R.id.button0);
+        buttonsArray[1] = (Button) findViewById(R.id.button1);
+        buttonsArray[2] = (Button) findViewById(R.id.button2);
+        buttonsArray[3] = (Button) findViewById(R.id.button3);
+        buttonsArray[4] = (Button) findViewById(R.id.button4);
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
-        for (int i = 0; i < 5; i++){
-            przytab[i].setTypeface(typeFace);
+        for (int i = 0; i < 5; i++) {
+            buttonsArray[i].setEnabled(true);
+            buttonsArray[i].setTypeface(typeFace);
         }
+        if (poziom == 0) buttonsArray[0].setEnabled(false);
+        else if (poziom == 1) buttonsArray[1].setEnabled(false);
+        else if (poziom == 2) buttonsArray[2].setEnabled(false);
+        else if (poziom == 3) buttonsArray[3].setEnabled(false);
+        else if (poziom == 4) buttonsArray[4].setEnabled(false);
     }
     //bardzo latwy
     public void sendDiff1(View view) {

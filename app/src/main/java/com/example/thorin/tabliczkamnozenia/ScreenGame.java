@@ -16,17 +16,15 @@ import java.util.Calendar;
 
 public class ScreenGame extends Activity {
     ProgressBar progressBar;
-    Button przy, przy0, przy1, przy2, przy3, przy4;
-    Button przy5, przy6, przy7, przy8, przy9, przy10, przy11;
-    Button[] przytab = {przy0, przy1, przy2, przy3, przy4,
-            przy5, przy6, przy7, przy8, przy9, przy10, przy11};
+    Button buttonMenu;
+    Button[] buttonsArray = new Button[12];
     String string, zmie;
-    int a = 0, b = 0, c, d, s, licz = 0, dbr = 0;
-    int liczbap, cznodp;
+    int firstX = 0, secondX = 0, numberFirst, numberSecond, score, count = 0, goodAnswer = 0;
+    int questionNumber, answerTime;
     AsyncTask<Void, Integer, Void> task;
     public static String PREFS_ACHIEV;
 
-    //przy tworzeniu
+    //buttonMenu tworzeniu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,53 +32,54 @@ public class ScreenGame extends Activity {
         //pobieranie liczby pytan i czasu na odpowiedz
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
-        liczbap = SingleLevel.getQuestion(poziom);
-        cznodp = SingleLevel.getTime(poziom);
+        PREFS_ACHIEV = ClassGra.whichLevel(poziom);
+        questionNumber = SingleLevel.getQuestion(poziom);
+        answerTime = SingleLevel.getTime(poziom);
 
         final TextView textview = (TextView) findViewById(R.id.odp);
-        przytab[0] = (Button) findViewById(R.id.button0);
-        przytab[1] = (Button) findViewById(R.id.button1);
-        przytab[2] = (Button) findViewById(R.id.button2);
-        przytab[3] = (Button) findViewById(R.id.button3);
-        przytab[4] = (Button) findViewById(R.id.button4);
-        przytab[5] = (Button) findViewById(R.id.button5);
-        przytab[6] = (Button) findViewById(R.id.button6);
-        przytab[7] = (Button) findViewById(R.id.button7);
-        przytab[8] = (Button) findViewById(R.id.button8);
-        przytab[9] = (Button) findViewById(R.id.button9);
-        przytab[10] = (Button) findViewById(R.id.button10);
-        przytab[11] = (Button) findViewById(R.id.button11);
+        buttonsArray[0] = (Button) findViewById(R.id.button0);
+        buttonsArray[1] = (Button) findViewById(R.id.button1);
+        buttonsArray[2] = (Button) findViewById(R.id.button2);
+        buttonsArray[3] = (Button) findViewById(R.id.button3);
+        buttonsArray[4] = (Button) findViewById(R.id.button4);
+        buttonsArray[5] = (Button) findViewById(R.id.button5);
+        buttonsArray[6] = (Button) findViewById(R.id.button6);
+        buttonsArray[7] = (Button) findViewById(R.id.button7);
+        buttonsArray[8] = (Button) findViewById(R.id.button8);
+        buttonsArray[9] = (Button) findViewById(R.id.button9);
+        buttonsArray[10] = (Button) findViewById(R.id.button10);
+        buttonsArray[11] = (Button) findViewById(R.id.button11);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //działanie x'ów
-        przytab[10].setOnTouchListener(new Button.OnTouchListener() {
+        buttonsArray[10].setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    a = 1;
+                    firstX = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    a = 0;
+                    firstX = 0;
                 }
-                if (a == 1 && b == 1) {
+                if (firstX == 1 && secondX == 1) {
                     sendOn();
-                    a = b = 0;
+                    firstX = secondX = 0;
                     task = new BackgroundAsyncTask().execute();
                 }
                 return true;
             }
         });
-        przytab[11].setOnTouchListener(new Button.OnTouchListener() {
+        buttonsArray[11].setOnTouchListener(new Button.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    b = 1;
+                    secondX = 1;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    b = 0;
+                    secondX = 0;
                 }
-                if (a == 1 && b == 1) {
+                if (firstX == 1 && secondX == 1) {
                     sendOn();
-                    a = b = 0;
+                    firstX = secondX = 0;
                     task = new BackgroundAsyncTask().execute();
                 }
                 return true;
@@ -89,47 +88,43 @@ public class ScreenGame extends Activity {
 
         //klikanie cyferek
         for (int i = 0; i < 10; i++) {
-            setOnClickListener(przytab[i], textview);
+            setOnClickListener(buttonsArray[i], textview);
         }
 
         //wylaczenie klawiatury
         numeric(false);
 
         final TextView tvzad = (TextView) findViewById(R.id.zadanie);
-        tvzad.setText("Zadanie " + licz + "/" + liczbap);
+        tvzad.setText("Zadanie " + count + "/" + questionNumber);
 
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/EraserRegular.ttf");
         for (int i = 0; i < 12; i++) {
-            przytab[i].setTypeface(typeFace);
+            buttonsArray[i].setTypeface(typeFace);
         }
         final TextView tvpyt = (TextView) findViewById(R.id.pyt);
         final TextView tvbad = (TextView) findViewById(R.id.bad);
         final TextView tvgood = (TextView) findViewById(R.id.good);
         final TextView tvinst = (TextView) findViewById(R.id.inst);
         final TextView tvwynik = (TextView) findViewById(R.id.wynik);
-        przy = (Button) findViewById(R.id.button);
+        buttonMenu = (Button) findViewById(R.id.button);
         tvzad.setTypeface(typeFace);
         tvpyt.setTypeface(typeFace);
         tvgood.setTypeface(typeFace);
         tvbad.setTypeface(typeFace);
         tvinst.setTypeface(typeFace);
         tvwynik.setTypeface(typeFace);
-        przy.setTypeface(typeFace);
+        buttonMenu.setTypeface(typeFace);
         textview.setTypeface(typeFace);
     }
 
     @Override
     public void onDestroy() {
-        if (licz != 0) task.cancel(true);
-        //przekazanie wyniku do achievmentow
-        float result = dbr / liczbap;
+        if (count != 0) task.cancel(true);
+        float result = (float) goodAnswer / (float) questionNumber;
         //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
-        SharedPreferences settings = getSharedPreferences("poziom", 0);
-        int poziom = settings.getInt("poziom", 0);
-        PREFS_ACHIEV = ClassGra.whichLevel(poziom);
-        settings = getSharedPreferences(PREFS_ACHIEV, 0);
+        SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         SharedPreferences.Editor editor = settings.edit();
-        if (result == 1) {
+        if (result == 1f) {
             int days = settings.getInt("Achiev_days", 1);
             int days2 = settings.getInt("Achiev_days2", 1);
             int days4 = settings.getInt("Achiev_days4", 1);
@@ -161,14 +156,14 @@ public class ScreenGame extends Activity {
             editor.putInt("Achiev_YearSaved", yearNow);
             editor.putInt("Achiev_DaySaved", dayOfYearNow);
         }
-        if (result >= 0.5) editor.putInt("Achiev0", 1);
-        if (result >= 0.75) editor.putInt("Achiev1", 1);
-        if (result == 1) editor.putInt("Achiev2", 1);
+        if (result >= 0.5f) editor.putInt("Achiev0", 1);
+        if (result >= 0.75f) editor.putInt("Achiev1", 1);
+        if (result == 1f) editor.putInt("Achiev2", 1);
         if (settings.getInt("Achiev_days", 0) >= 3) editor.putInt("Achiev3", 1);
         if (settings.getInt("Achiev_days", 0) >= 7) editor.putInt("Achiev4", 1);
         if (settings.getInt("Achiev_days2", 0) >= 14) editor.putInt("Achiev5", 1);
         if (settings.getInt("Achiev_days4", 0) >= 30) editor.putInt("Achiev6", 1);
-        if (result == 0.44) editor.putInt("Achiev7", 1);
+        if (result == 0.44f) editor.putInt("Achiev7", 1);
         editor.apply();
         //******************
         super.onDestroy();
@@ -199,31 +194,31 @@ public class ScreenGame extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             numeric(false);
-            if (licz == liczbap) end();
-            licz++;
+            if (count == questionNumber) end();
+            count++;
             //sprawdzenie wyniku na koniec czasu
             zmie = tvopd.getText().toString();
             if (zmie.equals("")) {
                 bad();
             } else {
                 int convert = Integer.valueOf(zmie);
-                if (convert != s) bad();
+                if (convert != score) bad();
             }
         }
 
         @Override
         protected void onPreExecute() {
-            if (licz == 0) licz++;
+            if (count == 0) count++;
             myProgress = 100;
-            //losowanie liczb c i d
-            c = ClassGra.randomize();
-            d = ClassGra.randomize();
-            s = c * d;
+            //losowanie liczb numberFirst i numberSecond
+            numberFirst = ClassGra.randomize();
+            numberSecond = ClassGra.randomize();
+            score = numberFirst * numberSecond;
             //wyświetlanie pytania
-            tvpyt.setText(c + " * " + d + " =");
+            tvpyt.setText(numberFirst + " * " + numberSecond + " =");
             //czyszczenie odpowiedzi
             tvopd.setText("");
-            tvzad.setText("Zadanie " + licz + "/" + liczbap);
+            tvzad.setText("Zadanie " + count + "/" + questionNumber);
             numeric(true);
         }
 
@@ -231,7 +226,7 @@ public class ScreenGame extends Activity {
         protected Void doInBackground(Void... params) {
             for (; myProgress > -1 && !this.isCancelled(); myProgress--) {
                 publishProgress(myProgress);
-                SystemClock.sleep(cznodp);
+                SystemClock.sleep(answerTime);
             }
             return null;
         }
@@ -244,8 +239,8 @@ public class ScreenGame extends Activity {
         @Override
         protected void onCancelled(Void result) {
             numeric(false);
-            if (licz == liczbap) end();
-            licz++;
+            if (count == questionNumber) end();
+            count++;
             progressBar.setProgress(0);
             super.onCancelled();
         }
@@ -267,33 +262,17 @@ public class ScreenGame extends Activity {
         final TextView tvopd = (TextView) findViewById(R.id.odp);
         // zamiana stringa na int + sprawdzenie
         zmie = tvopd.getText().toString();
-        int convert = Integer.valueOf(zmie);
+        int scoreNew = Integer.valueOf(zmie);
         //sprawdzanie
-        if (isGood(convert)) {
+        if (scoreNew == score) {
             good();
-        } else if (isBad(convert)) {
+        } else if (scoreNew > score) {
+            bad();
+        } else if (score > 9 && scoreNew < score && scoreNew > 9){
+            bad();
+        } else if (score < 10 && scoreNew < score){
             bad();
         }
-    }
-
-    private boolean isBad(int convert){
-        return isTooBig(convert) || isTwoDigitAndTooSmall(convert) || isOneDigitAndTooSmall(convert);
-    }
-
-    private boolean isOneDigitAndTooSmall(int convert) {
-        return s < 10 && convert < s;
-    }
-
-    private boolean isTwoDigitAndTooSmall(int convert) {
-        return s > 9 && convert < s && convert > 9;
-    }
-
-    private boolean isTooBig(int convert) {
-        return convert > s;
-    }
-
-    private boolean isGood(int convert) {
-        return convert == s;
     }
 
     //wyjscie do menu
@@ -312,7 +291,7 @@ public class ScreenGame extends Activity {
 
     //dobra odpowiedz
     public void good() {
-        dbr++;
+        goodAnswer++;
         task.cancel(true);
         findAndMakeVisible(R.id.good);
         numeric(false);
@@ -330,22 +309,23 @@ public class ScreenGame extends Activity {
     //true wlacza numeryczna, false wylacza numeryczna
     void numeric(boolean a) {
         for (int i = 0; i < 12; i++) {
-            przytab[i].setEnabled(a);
-            if (i > 9) przytab[i].setEnabled(!a);
+            buttonsArray[i].setEnabled(a);
+            if (i > 9) buttonsArray[i].setEnabled(!a);
         }
     }
 
     //wyswietla wynik i konczy
     void end() {
         final TextView tvwynik = (TextView) findViewById(R.id.wynik);
-        przytab[10].setEnabled(false);
-        przytab[11].setEnabled(false);
+        buttonsArray[10].setEnabled(false);
+        buttonsArray[11].setEnabled(false);
         findAndMakeInvisible(R.id.inst);
         findAndMakeInvisible(R.id.bad);
         findAndMakeInvisible(R.id.good);
         findAndMakeInvisible(R.id.pyt);
         findAndMakeInvisible(R.id.odp);
         findAndMakeVisible(R.id.wynik);
-        tvwynik.setText("Poprawnych\nodpowiedzi " + dbr + "/" + liczbap);
+        float result = (float) goodAnswer / (float) questionNumber * 100;
+        tvwynik.setText("Udzielono " + goodAnswer + " poprawnych\nodpowiedzi co daje " + result + "%");
     }
 }

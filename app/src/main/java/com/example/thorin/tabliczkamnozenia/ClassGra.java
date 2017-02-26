@@ -9,18 +9,18 @@ import java.util.Random;
 public class ClassGra {
 
     static String whichLevel(int a){
-        String poziom;
-        if(a == 0) poziom = "achiev_P0";
-        else if(a == 1) poziom = "achiev_P1";
-        else if(a == 2) poziom = "achiev_P2";
-        else if(a == 3) poziom = "achiev_P3";
-        else poziom = "achiev_P4";
-        return poziom;
+        String level;
+        if(a == 0) level = "achiev_P0";
+        else if(a == 1) level = "achiev_P1";
+        else if(a == 2) level = "achiev_P2";
+        else if(a == 3) level = "achiev_P3";
+        else level = "achiev_P4";
+        return level;
     }
 
     static int randomize(){
         Random rand = new Random();
-        int a,b = rand.nextInt(100) + 1;
+        int a, b = rand.nextInt(100) + 1;
         if (b >= 0 && b <= 8) a = 1;
         else if (b >= 9 && b <= 19) a = 2;
         else if (b >= 20 && b <= 30)  a = 3;
