@@ -52,8 +52,8 @@ public class ScreenAchievement extends Activity {
         if (result == 1) editor.putInt("Achiev2", 1);
         if (settings.getInt("Achiev_days", 0) >= 3) editor.putInt("Achiev3", 1);
         if (settings.getInt("Achiev_days", 0) >= 7) editor.putInt("Achiev4", 1);
-        if (settings.getInt("Achiev_days2", 0) == 1) editor.putInt("Achiev5", 1);
-        if (settings.getInt("Achiev_days4", 0) == 1) editor.putInt("Achiev6", 1);
+        if (settings.getInt("Achiev_days2", 0) >= 14) editor.putInt("Achiev5", 1);
+        if (settings.getInt("Achiev_days4", 0) >= 30) editor.putInt("Achiev6", 1);
         if (result == 0.44) editor.putInt("Achiev7", 1);
         editor.apply();
     }
@@ -106,9 +106,9 @@ public class ScreenAchievement extends Activity {
         editor.putInt("Achiev_days", 0);
         editor.putInt("Achiev_days2", 0);
         editor.putInt("Achiev_days4", 0);
-        editor.putInt("Achiev_roz", 0);
         editor.putInt("Achiev_wons", 0);
-        editor.putString("Achiev_data1", "");
+        editor.putInt("Achiev_YearSaved", 1970);
+        editor.putInt("Achiev_DaySaved", 1);
         editor.apply();
     }
 }

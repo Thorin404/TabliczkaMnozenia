@@ -15,6 +15,8 @@ import android.widget.TextView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class ScreenGame extends Activity {
     ProgressBar progressBar;
@@ -128,46 +130,45 @@ public class ScreenGame extends Activity {
         //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
+        int days2 = settings.getInt("Achiev_days2", 0);
+        int days4 = settings.getInt("Achiev_days4", 0);
         PREFS_ACHIEV = ClassGra.whichLevel(poziom);
         settings = getSharedPreferences(PREFS_ACHIEV, 0);
-        int roznica = settings.getInt("Achiev_roz", 0);
-        int days = settings.getInt("Achiev_days", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putFloat("result", soc / cos);
         if ((soc / cos) == 1) {
+            int days = settings.getInt("Achiev_days", 0);
             int wons = settings.getInt("Achiev_wons", 0);
-            String data1zw = settings.getString("Achiev_date", "2017,2,27");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-            Date date = new Date();
+
+            Calendar calendar = Calendar.getInstance();
+            int yearNow = calendar.get(Calendar.YEAR);
+            int dayOfYearNow = calendar.get(Calendar.DAY_OF_YEAR);
+            int yearSaved = settings.getInt("Achiev_YearSaved", 1970);
+            int dayOfYearSaved = settings.getInt("Achiev_DaySaved", 1);
+
+            int roznica = ClassGra.difference(yearNow, dayOfYearNow, yearSaved, dayOfYearSaved);
+
             if (roznica == 0) {
-                wons = 0;
-                editor.putInt("Achiev_wons", wons);
-                roznica = 1;
-                editor.putInt("Achiev_roz", roznica);
-                Date now = new Date();
-                String dateString = dateFormat.format(now);
-                editor.putString("Achiev_date", dateString);
-            }
-            if (roznica == 1) {
                 wons++;
-                days++;
                 editor.putInt("Achiev_wons", wons);
+                if (wons == 2) editor.putInt("Achiev_days2p", wons);
+                if (wons == 4) editor.putInt("Achiev_days4p", wons);
+            } else if (roznica == 1) {
+                editor.putInt("Achiev_wons", 0);
+                days++;
+                days2++;
+                days4++;
                 editor.putInt("Achiev_days", days);
+                if (settings.getInt("Achiev_days2p", 0) == 2) editor.putInt("Achiev_days2", days2);
+                if (settings.getInt("Achiev_days4p", 0) == 4) editor.putInt("Achiev_days4", days4);
+            } else {
+                editor.putInt("Achiev_days", 0);
+                editor.putInt("Achiev_days2", 0);
+                editor.putInt("Achiev_days4", 0);
             }
-            if (wons >= 2) {
-                try {
-                    Date pierwszyraz = dateFormat.parse(data1zw);
-                    long roz = ClassGra.difference(date, pierwszyraz);
-                    if (roz <= 14) {
-                        editor.putInt("Achiev_days2", 1);
-                        if (wons >= 4 && roz <= 30) {
-                            editor.putInt("Achiev_days4", 1);
-                        }
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
+
+            editor.putInt("Achiev_YearSaved", yearNow);
+            editor.putInt("Achiev_DaySaved", dayOfYearNow);
         }
         editor.apply();
         //******************

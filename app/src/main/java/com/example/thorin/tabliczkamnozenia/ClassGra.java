@@ -1,6 +1,5 @@
 package com.example.thorin.tabliczkamnozenia;
 
-import java.util.Date;
 import java.util.Random;
 
 /**
@@ -34,7 +33,22 @@ public class ClassGra {
         return a;
     }
 
-    public static long difference(Date d1, Date d2) {
-        return Math.round((d1.getTime() - d2.getTime()) / 86400000.0);
+    static int difference(int yearNow, int dayNow, int yearSaved, int daySaved) {
+        if (yearNow == yearSaved){
+            if (dayNow == daySaved){
+                return 0;
+            } else if (dayNow == daySaved + 1){
+                return 1;
+            }
+        } else if (yearNow == yearSaved + 1){
+            if (dayNow == 1){
+                if (daySaved == 365 && yearSaved % 4 != 0) {
+                    return 1;
+                }
+                if (daySaved == 366 && yearSaved % 4 == 0) {
+                    return 1;
+                }
+            }
+        } return 2;
     }
 }
