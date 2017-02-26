@@ -17,7 +17,6 @@ public class ScreenAchievement extends Activity {
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         PREFS_ACHIEV = ClassGra.whichLevel(settings.getInt("poziom", 0));
         setContentView(R.layout.activity_ekran_achiev);
-        setAchievement();
         achievementOn();
         changeFont(R.id.checkedTextView0);
         changeFont(R.id.checkedTextView1);
@@ -40,22 +39,6 @@ public class ScreenAchievement extends Activity {
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
         TextView button1=(TextView)findViewById(id);
         button1.setTypeface(typeFace);
-    }
-
-    private void setAchievement(){
-        SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
-        float result = settings.getFloat("result", 0f);
-        settings = getSharedPreferences(PREFS_ACHIEV,0);
-        SharedPreferences.Editor editor = settings.edit();
-        if (result >= 0.5) editor.putInt("Achiev0", 1);
-        if (result >= 0.75) editor.putInt("Achiev1", 1);
-        if (result == 1) editor.putInt("Achiev2", 1);
-        if (settings.getInt("Achiev_days", 0) >= 3) editor.putInt("Achiev3", 1);
-        if (settings.getInt("Achiev_days", 0) >= 7) editor.putInt("Achiev4", 1);
-        if (settings.getInt("Achiev_days2", 0) >= 14) editor.putInt("Achiev5", 1);
-        if (settings.getInt("Achiev_days4", 0) >= 30) editor.putInt("Achiev6", 1);
-        if (result == 0.44) editor.putInt("Achiev7", 1);
-        editor.apply();
     }
 
     private void achievementOn(){
@@ -99,7 +82,6 @@ public class ScreenAchievement extends Activity {
     private void clear(){
         SharedPreferences settings = getSharedPreferences(PREFS_ACHIEV, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat("result", 0f);
         for (int i = 0; i < 8; i++) {
             editor.putInt("Achiev"+i, 0);
         }

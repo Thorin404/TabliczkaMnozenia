@@ -122,15 +122,14 @@ public class ScreenGame extends Activity {
     public void onDestroy() {
         if (licz != 0) task.cancel(true);
         //przekazanie wyniku do achievmentow
-        float cos = liczbap, soc = dbr;
+        float result = dbr / liczbap;
         //****************** tutaj jest całe zapisywanie i ogarnianie ile razy ktoś wygrał
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
         PREFS_ACHIEV = ClassGra.whichLevel(poziom);
         settings = getSharedPreferences(PREFS_ACHIEV, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat("result", soc / cos);
-        if ((soc / cos) == 1) {
+        if (result == 1) {
             int days = settings.getInt("Achiev_days", 1);
             int days2 = settings.getInt("Achiev_days2", 1);
             int days4 = settings.getInt("Achiev_days4", 1);
@@ -162,6 +161,14 @@ public class ScreenGame extends Activity {
             editor.putInt("Achiev_YearSaved", yearNow);
             editor.putInt("Achiev_DaySaved", dayOfYearNow);
         }
+        if (result >= 0.5) editor.putInt("Achiev0", 1);
+        if (result >= 0.75) editor.putInt("Achiev1", 1);
+        if (result == 1) editor.putInt("Achiev2", 1);
+        if (settings.getInt("Achiev_days", 0) >= 3) editor.putInt("Achiev3", 1);
+        if (settings.getInt("Achiev_days", 0) >= 7) editor.putInt("Achiev4", 1);
+        if (settings.getInt("Achiev_days2", 0) >= 14) editor.putInt("Achiev5", 1);
+        if (settings.getInt("Achiev_days4", 0) >= 30) editor.putInt("Achiev6", 1);
+        if (result == 0.44) editor.putInt("Achiev7", 1);
         editor.apply();
         //******************
         super.onDestroy();
