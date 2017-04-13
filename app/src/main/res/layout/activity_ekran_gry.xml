@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context="com.example.thorin.tabliczkamnozenia.Ekran_gry">
+    tools:context="com.example.thorin.tabliczkamnozenia.ScreenGame">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="60sp"
+            android:textSize="80sp"
             android:visibility="invisible"
             android:id="@+id/pyt" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/text_odp"
             android:layout_alignParentEnd="true"
-            android:textSize="60sp"
+            android:textSize="80sp"
             android:visibility="invisible"
             android:id="@+id/odp" />
 
@@ -54,8 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/odp"
-            android:textSize="40sp"
+            android:textSize="80sp"
             android:hint="@string/text_good"
+            android:textColorHint="@color/colorgood"
             android:visibility="invisible"
             android:id="@+id/good" />
 
@@ -63,8 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="60sp"
+            android:textSize="100sp"
             android:hint="@string/text_bad"
+            android:textColorHint="@color/colorbad"
             android:visibility="invisible"
             android:id="@+id/bad" />
 
@@ -72,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="25sp"
+            android:textSize="40sp"
             android:hint="@string/text_inst"
             android:visibility="visible"
             android:id="@+id/inst" />
