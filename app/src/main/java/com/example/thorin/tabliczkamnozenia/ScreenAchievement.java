@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
@@ -77,6 +78,8 @@ public class ScreenAchievement extends Activity {
     public void sendDelete(View view) {
         clear();
         achievementOff();
+        SystemClock.sleep(500);
+        finish();
     }
 
     private void clear(){
