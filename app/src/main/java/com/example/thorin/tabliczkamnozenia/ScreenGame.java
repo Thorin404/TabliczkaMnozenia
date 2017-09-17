@@ -28,7 +28,7 @@ public class ScreenGame extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ekran_gry);
+        setContentView(R.layout.activity_screen_game);
         //pobieranie liczby pytan i czasu na odpowiedz
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);

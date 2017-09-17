@@ -29,6 +29,7 @@
         <activity
             android:name=".ScreenAbout"
             android:screenOrientation="portrait" />
+        <activity android:name=".ScreenLearn"></activity>
     </application>
 
 </manifest>

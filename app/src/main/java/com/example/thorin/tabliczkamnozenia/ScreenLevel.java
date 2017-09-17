@@ -15,7 +15,7 @@ public class ScreenLevel extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
-        setContentView(R.layout.activity_ekran_poziom);
+        setContentView(R.layout.activity_screen_lecel);
         buttonsArray[0] = (Button) findViewById(R.id.button0);
         buttonsArray[1] = (Button) findViewById(R.id.button1);
         buttonsArray[2] = (Button) findViewById(R.id.button2);
