@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-<<<<<<< HEAD
     android:id="@+id/activity_screen_learn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -168,20 +167,5 @@
             android:id="@+id/multi_instruction" />
 
     </RelativeLayout>
-=======
-    android:id="@+id/activity_ekran_about"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.thorin.tabliczkamnozenia.ScreenAbout">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_autorzy"
-        android:textSize="40sp"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:id="@+id/textView" />
->>>>>>> origin/master
 
 </LinearLayout>
