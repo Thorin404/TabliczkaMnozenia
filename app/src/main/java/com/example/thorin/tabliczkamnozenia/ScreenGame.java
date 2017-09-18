@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class ScreenGame extends Activity {
@@ -28,7 +30,7 @@ public class ScreenGame extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ekran_gry);
+        setContentView(R.layout.activity_screen_game);
         //pobieranie liczby pytan i czasu na odpowiedz
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         int poziom = settings.getInt("poziom", 0);
@@ -94,25 +96,25 @@ public class ScreenGame extends Activity {
         //wylaczenie klawiatury
         numeric(false);
 
-        final TextView tvzad = (TextView) findViewById(R.id.zadanie);
-        tvzad.setText("Zadanie " + count + "/" + questionNumber);
-
+        //zmiana fonta
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/EraserRegular.ttf");
         for (int i = 0; i < 12; i++) {
             buttonsArray[i].setTypeface(typeFace);
         }
-        final TextView tvpyt = (TextView) findViewById(R.id.pyt);
-        final TextView tvbad = (TextView) findViewById(R.id.bad);
-        final TextView tvgood = (TextView) findViewById(R.id.good);
-        final TextView tvinst = (TextView) findViewById(R.id.inst);
-        final TextView tvwynik = (TextView) findViewById(R.id.wynik);
+        TextView tv = (TextView) findViewById(R.id.pyt);
+        tv.setTypeface(typeFace);
+        tv = (TextView) findViewById(R.id.bad);
+        tv.setTypeface(typeFace);
+        tv = (TextView) findViewById(R.id.good);
+        tv.setTypeface(typeFace);
+        tv = (TextView) findViewById(R.id.inst);
+        tv.setTypeface(typeFace);
+        tv = (TextView) findViewById(R.id.wynik);
+        tv.setTypeface(typeFace);
+        tv = (TextView) findViewById(R.id.zadanie);
+        tv.setText("Zadanie " + count + "/" + questionNumber);
+        tv.setTypeface(typeFace);
         buttonMenu = (Button) findViewById(R.id.button);
-        tvzad.setTypeface(typeFace);
-        tvpyt.setTypeface(typeFace);
-        tvgood.setTypeface(typeFace);
-        tvbad.setTypeface(typeFace);
-        tvinst.setTypeface(typeFace);
-        tvwynik.setTypeface(typeFace);
         buttonMenu.setTypeface(typeFace);
         textview.setTypeface(typeFace);
     }

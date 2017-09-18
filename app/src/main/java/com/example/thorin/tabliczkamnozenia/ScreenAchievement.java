@@ -16,7 +16,7 @@ public class ScreenAchievement extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences settings = getSharedPreferences("poziom", 0);
         PREFS_ACHIEV = ClassGra.whichLevel(settings.getInt("poziom", 0));
-        setContentView(R.layout.activity_ekran_achiev);
+        setContentView(R.layout.activity_screen_achievement);
         achievementOn();
         changeFont(R.id.checkedTextView0);
         changeFont(R.id.checkedTextView1);

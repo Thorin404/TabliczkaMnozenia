@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_screen_learn"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.thorin.tabliczkamnozenia.ScreenLearn">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:text="@string/text_learn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:id="@+id/text_learn" />
+
+        <Button
+            android:text="toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:onClick="sendToggle" />
+
+        <Button
+            android:text="@string/button_Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonMenu"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:onClick="sendMenu" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:weightSum="1">
+
+        <Button
+            android:text="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button1"
+            android:textSize="20sp"
+            android:onClick="sendLearn1"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:text="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:textSize="20sp"
+            android:onClick="sendLearn2"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:textSize="20sp"
+            android:onClick="sendLearn3"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4"
+            android:textSize="20sp"
+            android:onClick="sendLearn4"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button5"
+            android:textSize="20sp"
+            android:onClick="sendLearn5"
+            android:layout_weight=".2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:weightSum="1">
+
+        <Button
+            android:text="6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button6"
+            android:textSize="20sp"
+            android:onClick="sendLearn6"
+            android:layout_weight="0.2" />
+
+        <Button
+            android:text="7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button7"
+            android:textSize="20sp"
+            android:onClick="sendLearn7"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button8"
+            android:textSize="20sp"
+            android:onClick="sendLearn8"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button9"
+            android:textSize="20sp"
+            android:onClick="sendLearn9"
+            android:layout_weight=".2" />
+
+        <Button
+            android:text="10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button10"
+            android:textSize="20sp"
+            android:onClick="sendLearn10"
+            android:layout_weight=".2" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:hint="@string/text_multi_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:id="@+id/multiplication" />
+
+        <TextView
+            android:hint="@string/text_multi_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:id="@+id/multi_instruction" />
+
+    </RelativeLayout>
+
+</LinearLayout>

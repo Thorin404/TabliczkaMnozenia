@@ -4,15 +4,24 @@
     android:id="@+id/activity_ekran_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.thorin.tabliczkamnozenia.ScreenAbout">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_autorzy"
+        android:text="@string/text_autors"
         android:textSize="40sp"
         android:layout_marginLeft="5sp"
         android:layout_marginTop="5sp"
         android:id="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/text_goto_learn"
+        android:onClick="sendLearn"
+        android:textSize="20sp"
+        android:id="@+id/button_learn"/>
 
 </LinearLayout>

@@ -34,7 +34,7 @@
                     android:textSize="40sp" />
 
                 <Button
-                    android:text="@string/button_Usun"
+                    android:text="@string/button_Clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button"
