@@ -14,6 +14,7 @@ public class ScreenAbout extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_about);
+<<<<<<< HEAD
         Typeface typeFace = Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setTypeface(typeFace);
@@ -24,5 +25,10 @@ public class ScreenAbout extends Activity {
     public void sendLearn(View view) {
         Intent intent = new Intent(this, ScreenLearn.class);
         startActivity(intent);
+=======
+        TextView myTextView=(TextView)findViewById(R.id.textView);
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
+        myTextView.setTypeface(typeFace);
+>>>>>>> origin/master
     }
 }

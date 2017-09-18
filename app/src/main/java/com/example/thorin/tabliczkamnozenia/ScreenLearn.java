@@ -1,5 +1,6 @@
 package com.example.thorin.tabliczkamnozenia;
 
+<<<<<<< HEAD
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,11 +14,18 @@ public class ScreenLearn extends AppCompatActivity {
     Button[] buttonsArray = new Button[11];
     private boolean toggleBool = true;
     int abc;
+=======
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class ScreenLearn extends AppCompatActivity {
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_learn);
+<<<<<<< HEAD
 
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/EraserRegular.ttf");
 
@@ -116,5 +124,7 @@ public class ScreenLearn extends AppCompatActivity {
     //wyjscie do menu
     public void sendMenu(View view) {
         finish();
+=======
+>>>>>>> origin/master
     }
 }
