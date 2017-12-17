@@ -268,7 +268,9 @@ public class ScreenGame extends Activity {
         //sprawdzanie
         if (scoreNew == score) {
             good();
-        } else if (scoreNew > score) {
+        } else if (scoreNew == 0) {
+            bad();
+        }else if (scoreNew > score) {
             bad();
         } else if (score > 9 && scoreNew < score && scoreNew > 9){
             bad();

@@ -9,8 +9,8 @@
     <string name="button_Exit">Wyjscie</string>
     <string name="button_Menu">Menu</string>
 
-    <string name="button_Diff1">Bardzo latwy\r
-        Liczba pytan: 10\r
+    <string name="button_Diff1">Bardzo latwy\n
+        Liczba pytan: 10\n
         Czas na odpowiedz: 30s</string>
     <string name="button_Diff2">Latwy\n
         Liczba pytan: 20\n
